@@ -1,0 +1,44 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Talaba",
+      "NameRu": "Студент",
+      "NameEn": "Student",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Vaqtincha ishsiz",
+      "NameRu": "Временно безработный",
+      "NameEn": "Unemployed",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Harbiy",
+      "NameRu": "Военнослужащий",
+      "NameEn": "Soldier",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Ishlayman",
+      "NameRu": "Работаю",
+      "NameEn": "Has a work",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "To'liq ish kuni",
+      "NameRu": "Полный день",
+      "NameEn": "Full day",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Smenali grafik",
+      "NameRu": "Сменный график",
+      "NameEn": "Shift work",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Moslashuvchan ish grafigi",
+      "NameRu": "Гибкий графий",
+      "NameEn": "Flexible",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Masofaviy ish",
+      "NameRu": "Удалённая работа",
+      "NameEn": "Remote",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

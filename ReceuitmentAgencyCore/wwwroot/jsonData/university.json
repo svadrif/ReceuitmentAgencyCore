@@ -1,0 +1,34 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "O'zbekiston Milliy Universiteti (TDU)",
+      "NameRu": "Национальный университет Узбекистана",
+      "NameEn": "National University of Uzbekistan",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Toshkent axborot texnologiyalari universiteti",
+      "NameRu": "Ташкентский университет информационных технологий",
+      "NameEn": "Tashkent university of information technologies",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Buxoro davlat universiteti",
+      "NameRu": "Бухарский государственный универститет",
+      "NameEn": "Bukhara state university",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

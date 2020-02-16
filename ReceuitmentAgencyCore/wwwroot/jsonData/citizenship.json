@@ -1,0 +1,34 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "O'zbek",
+      "NameRu": "Узбек",
+      "NameEn": "Uzbek",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Rus",
+      "NameRu": "Русский",
+      "NameEn": "Russian",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Tojik",
+      "NameRu": "Таджик",
+      "NameEn": "Tajik",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

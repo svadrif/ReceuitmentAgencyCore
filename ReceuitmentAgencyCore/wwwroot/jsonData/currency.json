@@ -1,0 +1,28 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Sum",
+      "NameRu": "Сум",
+      "NameEn": "Som",
+      "Acronym": "Sum",
+      "Sign": "?"
+    },
+    {
+      "Id": "0",
+      "NameUz": "Dollar",
+      "NameRu": "Доллар",
+      "NameEn": "Dollar",
+      "Acronym": "USD",
+      "Sign": "$"
+    },
+    {
+      "Id": "0",
+      "NameUz": "Evro",
+      "NameRu": "Евро",
+      "NameEn": "Euro",
+      "Acronym": "EUR",
+      "Sign": "?"
+    }
+  ]
+}

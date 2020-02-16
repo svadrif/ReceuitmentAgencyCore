@@ -1,0 +1,65 @@
+{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "O'rta",
+      "NameRu": "Среднее",
+      "NameEn": "Secondary",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "O'rta maxsus",
+      "NameRu": "Среднее специальное",
+      "NameEn": "Secondary special",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Bakalavriat",
+      "NameRu": "Бакалавриат",
+      "NameEn": "Bachelor's degree",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Magistratura",
+      "NameRu": "Магистратура",
+      "NameEn": "Master's degree",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Fan nomzodi",
+      "NameRu": "Кандидат наук",
+      "NameEn": "PhD",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Fan doktori",
+      "NameRu": "Доктор наук",
+      "NameEn": "DSc",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+
+  ]
+}

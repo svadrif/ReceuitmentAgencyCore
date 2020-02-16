@@ -1,0 +1,37 @@
+{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Toshkent",
+      "NameRu": "Ташкент",
+      "NameEn": "Tashkent",
+      "CountryId": "1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Samarqand",
+      "NameRu": "Самарканд",
+      "NameEn": "Samarkand",
+      "CountryId": "1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Jizzax",
+      "NameRu": "Джизак",
+      "NameEn": "Jizzakh",
+      "CountryId": "1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

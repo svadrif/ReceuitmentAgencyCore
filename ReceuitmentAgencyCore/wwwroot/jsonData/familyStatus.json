@@ -1,0 +1,54 @@
+﻿{
+   "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Uylangan/Turmushga chiqgan",
+      "NameRu": "Женат/Замужем",
+      "NameEn": "Married",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Uylanmagan/Turmushga chiqmagan",
+      "NameRu": "Не женат/Не замужем",
+      "NameEn": "Not married",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Farzandi bor",
+      "NameRu": "Есть дети",
+      "NameEn": "Have kids",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Farzandi yo'q",
+      "NameRu": "Детей нет",
+      "NameEn": "No children",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Ajrashgan",
+      "NameRu": "Разведён/Разведена",
+      "NameEn": "Divorced",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

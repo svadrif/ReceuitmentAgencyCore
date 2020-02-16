@@ -1,0 +1,54 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "To'liq bandlik",
+      "NameRu": "Полная занятость",
+      "NameEn": "Full employment",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Yarim stavka",
+      "NameRu": "Частичная занятость",
+      "NameEn": "Part-time employment",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Loyihaviy ish",
+      "NameRu": "Проектная работа",
+      "NameEn": "Project work",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Ko'ngilli ish",
+      "NameRu": "Волонтерство",
+      "NameEn": "Volunteer",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Amaliyot",
+      "NameRu": "Стажировка",
+      "NameEn": "Internship",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

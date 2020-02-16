@@ -1,0 +1,104 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Tajribasiz",
+      "NameRu": "Без опыта работы",
+      "NameEn": "No experience",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "0 - 3 oy",
+      "NameRu": "0 - 3 месяца",
+      "NameEn": "0 - 3 months",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "0.5 - 1 yil",
+      "NameRu": "0.5 - 1 года",
+      "NameEn": "0.5 - 1 year",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "1 - 2 yil",
+      "NameRu": "1 - 2 года",
+      "NameEn": "1 - 2 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "2 - 3 yil",
+      "NameRu": "2 - 3 года",
+      "NameEn": "2 - 3 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "3 - 5 yil",
+      "NameRu": "3 - 5 лет",
+      "NameEn": "3 - 5 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "5 - 10 yil",
+      "NameRu": "5 - 10 лет",
+      "NameEn": "5 - 10 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "10 - 20 yil",
+      "NameRu": "10 - 20 лет",
+      "NameEn": "10 - 20 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "20 - 30 yil",
+      "NameRu": "20 - 30 лет",
+      "NameEn": "20 - 30 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "30 - 50 yil",
+      "NameRu": "30 - 50 лет",
+      "NameEn": "30 - 50 years",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Olmazor tumani",
+      "NameRu": "Алмазарский район",
+      "NameEn": "Olmazor district",
+      "RegionId": "1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Chilonzor tumani",
+      "NameRu": "Чиланзарский район",
+      "NameEn": "Chilanzar district",
+      "RegionId": "1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Uchtepa tumani",
+      "NameRu": "Учтепинский район",
+      "NameEn": "Uchtepa district",
+      "RegionId": "1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Bulung'ur tumani",
+      "NameRu": "Булунгурский район",
+      "NameEn": "Bulungur district",
+      "RegionId": "2",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Ishtixon tumani",
+      "NameRu": "Иштиханский район",
+      "NameEn": "Ishtikhon district",
+      "RegionId": "2",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Urgut tumani",
+      "NameRu": "Ургутский район",
+      "NameEn": "Urgut district",
+      "RegionId": "2",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Arnasoy tumani",
+      "NameRu": "Арнасойский район",
+      "NameEn": "Arnasay district",
+      "RegionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Dustlik tumani",
+      "NameRu": "Дустликский район",
+      "NameEn": "Dustlik district",
+      "RegionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Paxtakor tumani",
+      "NameRu": "Пахтакорский район",
+      "NameEn": "Pakhtakor district",
+      "RegionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

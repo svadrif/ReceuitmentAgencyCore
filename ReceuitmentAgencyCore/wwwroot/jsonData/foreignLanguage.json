@@ -1,0 +1,52 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "O'zbek tili",
+      "NameRu": "Узбекский язык",
+      "NameEn": "Uzbek language",
+      "ShortName": "UZ",
+      "DefaultName": "O'zbek tili",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Rus tili",
+      "NameRu": "Русский язык",
+      "NameEn": "Russian language",
+      "ShortName": "RU",
+      "DefaultName": "Русский язык",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Ingliz tili",
+      "NameRu": "Английский язык",
+      "NameEn": "English",
+      "ShortName": "EN",
+      "DefaultName": "English",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Koreys tili",
+      "NameRu": "Корейский язык",
+      "NameEn": "Korean language",
+      "ShortName": "KR",
+      "DefaultName": "",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}

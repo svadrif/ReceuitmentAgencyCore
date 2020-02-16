@@ -1,0 +1,70 @@
+{
+  "JsonData": [
+    {
+      "Id": "0",
+      "NameUz": "Boshlang'ich",
+      "NameRu": "Начальный",
+      "NameEn": "Beginner",
+      "Level": "A1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Elementar",
+      "NameRu": "Элементарный",
+      "NameEn": "Elementary",
+      "Level": "A2",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "O'rtacha",
+      "NameRu": "Средний",
+      "NameEn": "Intermediate",
+      "Level": "B1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "O'rtachadan yuqori daraja",
+      "NameRu": "Выше среднего",
+      "NameEn": "Upper Intermediate",
+      "Level": "B2",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "A'lo darajada",
+      "NameRu": "Продвинутый",
+      "NameEn": "Advanced",
+      "Level": "C1",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "NameUz": "Mukammal darajada",
+      "NameRu": "В совершенстве",
+      "NameEn": "Mastery",
+      "Level": "C2",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}
