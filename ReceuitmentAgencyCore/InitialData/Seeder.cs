@@ -82,7 +82,24 @@ namespace RecruitmentAgencyCore.InitialData
 
         public async Task Seed()
         {
-            _ctx.Database.EnsureCreated();
+            _ctx.Database.EnsureCreated();    
+
+            #region Roles
+            if (!_ctx.Roles.Any())
+            {
+                Role[] roles = new Role[3]
+                {
+                    new Role{ Name = "Admin", CreatedBy = 1, CreatedDate = DateTime.Now },
+                    new Role{ Name = "Employer", CreatedBy = 1, CreatedDate = DateTime.Now },
+                    new Role{ Name = "JobSeeker", CreatedBy = 1, CreatedDate = DateTime.Now }           
+                };
+                foreach (var item in roles)
+                {
+                    _roleRepository.Add(item);
+                }
+                //_roleRepository.AddRange(roles);
+            }
+            #endregion
 
             #region Users
             if (!_ctx.Users.Any())
@@ -94,7 +111,9 @@ namespace RecruitmentAgencyCore.InitialData
                     {
                         UserName = "Firdavs",
                         Email = "developer6098@gmail.com",
-                        PhoneNumber = "933986098"
+                        PhoneNumber = "933986098",
+                        RoleId = 1,
+                        IsActive = true
                     };
                     var res = await _userManager.CreateAsync(user, "6098DeveloperC#");
                     if (res != IdentityResult.Success)
@@ -105,32 +124,22 @@ namespace RecruitmentAgencyCore.InitialData
             }
             #endregion
 
-            #region Roles
-            if (!_ctx.Roles.Any())
-            {
-                Role[] roles = new Role[]
-                {
-                    new Role{ Name = "Admin", CreatedBy = 1, CreatedDate = DateTime.Now },
-                    new Role{ Name = "Employer", CreatedBy = 1, CreatedDate = DateTime.Now },
-                    new Role{ Name = "JobSeeker", CreatedBy = 1, CreatedDate = DateTime.Now }           
-                };
-
-                _roleRepository.AddRange(roles);
-            }
-            #endregion
-
             #region Permissions
             if (!_ctx.Permissions.Any())
             {
-                Permission[] permissions = new Permission[]
+                Permission[] permissions = new Permission[4]
                 {
                     new Permission{ Name = "Read", CreatedBy = 1, CreatedDate = DateTime.Now },
                     new Permission{ Name = "Write", CreatedBy = 1, CreatedDate = DateTime.Now },
                     new Permission{ Name = "ReadWrite", CreatedBy = 1, CreatedDate = DateTime.Now },
                     new Permission{ Name = "NoAccess", CreatedBy = 1, CreatedDate = DateTime.Now }
                 };
-
-                _permissionRepository.AddRange(permissions);
+                foreach (var item in permissions)
+                {
+                    _permissionRepository.Add(item);
+                }
+                //_permissionRepository.AddRange(permissions);
+                
             }
             #endregion
 
@@ -138,8 +147,12 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Menus.Any())
             {
                 List<Menu> menus = GetList<Menu>(_path + "/wwwroot/jsonData/menu.json");
-                menus.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
-                _menuRepository.AddRange(menus);
+                menus.ForEach(x => x.CreatedDate = DateTime.Now);
+                foreach (var item in menus)
+                {
+                    _menuRepository.Add(item);
+                }
+                //_menuRepository.AddRange(menus);
             }
             #endregion
 
@@ -147,8 +160,12 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.MenuRolePermissions.Any())
             {
                 List<MenuRolePermission> menuRolePermissions = GetList<MenuRolePermission>(_path + "/wwwroot/jsonData/menuRolePermission.json");
-                menuRolePermissions.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
-                _menuRolePermissionRepository.AddRange(menuRolePermissions);
+                menuRolePermissions.ForEach(x => x.CreatedDate = DateTime.Now);
+                foreach (var item in menuRolePermissions)
+                {
+                    _menuRolePermissionRepository.Add(item);
+                }
+                //_menuRolePermissionRepository.AddRange(menuRolePermissions);
             }
             #endregion
 
@@ -156,9 +173,9 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Genders.Any())
             {
                 Gender[] genders = new Gender[]
-                {       
-                    new Gender{ NameUz = "Erkak", NameRu = "Мужской", NameEn = "Male" },
-                    new Gender{ NameUz = "Ayol", NameRu = "Женский", NameEn = "Female"}                 
+                {
+                    new Gender{ NameUz = "Ayol", NameRu = "Женский", NameEn = "Female"},
+                    new Gender{ NameUz = "Erkak", NameRu = "Мужской", NameEn = "Male" }               
                 };
 
                 _genderRepository.AddRange(genders);
@@ -181,8 +198,12 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Experiences.Any())
             {
                 List<Experience> experiences = GetList<Experience>(_path + "/wwwroot/jsonData/experience.json");
-                experiences.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
-                _experienceRepository.AddRange(experiences);
+                experiences.ForEach(x => x.CreatedDate = DateTime.Now);
+                foreach (var item in experiences)
+                {
+                    _experienceRepository.Add(item);
+                }
+                //_experienceRepository.AddRange(experiences);
                 
             }
             #endregion
@@ -191,7 +212,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.FamilyStatuses.Any())
             {
                 List<FamilyStatus> familyStatuses = GetList<FamilyStatus>(_path + "/wwwroot/jsonData/familyStatus.json");
-                familyStatuses.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                familyStatuses.ForEach(x => x.CreatedDate = DateTime.Now);
+                familyStatuses.Reverse();
                 _familyStatusRepository.AddRange(familyStatuses);
             }
             #endregion
@@ -200,7 +222,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Branches.Any())
             {
                 List<Branch> branches = GetList<Branch>(_path + "/wwwroot/jsonData/branch.json");
-                branches.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                branches.ForEach(x => x.CreatedDate = DateTime.Now);
+                branches.Reverse();
                 _branchRepository.AddRange(branches);
             }
             #endregion
@@ -208,8 +231,9 @@ namespace RecruitmentAgencyCore.InitialData
             #region Citizenships
             if (!_ctx.Citizenships.Any())
             {
-                IList<Citizenship> citizenships = GetList<Citizenship>(_path + "/wwwroot/jsonData/citizenship.json");
-                citizenships.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                List<Citizenship> citizenships = GetList<Citizenship>(_path + "/wwwroot/jsonData/citizenship.json");
+                citizenships.ForEach(x => x.CreatedDate = DateTime.Now);
+                citizenships.Reverse();
                 _citizenshipRepository.AddRange(citizenships);
             }
             #endregion
@@ -218,6 +242,7 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Currencies.Any())
             {
                 List<Currency> currencies = GetList<Currency>(_path + "/wwwroot/jsonData/currency.json");
+                currencies.Reverse();
                 _currencyRepository.AddRange(currencies);
             }
             #endregion
@@ -226,7 +251,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (_ctx.EducationTypes.Any())
             {
                 List<EducationType> educationTypes = GetList<EducationType>(_path + "/wwwroot/jsonData/educationType.json");
-                educationTypes.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                educationTypes.ForEach(x => x.CreatedDate = DateTime.Now);
+                educationTypes.Reverse();
                 _educationTypeRepository.AddRange(educationTypes);
             }
             #endregion
@@ -235,7 +261,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (_ctx.ForeignLanguages.Any())
             {
                 List<ForeignLanguage> foreignLanguages = GetList<ForeignLanguage>(_path + "/wwwroot/jsonData/foreignLanguage.json");
-                foreignLanguages.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                foreignLanguages.ForEach(x => x.CreatedDate = DateTime.Now);
+                foreignLanguages.Reverse();
                 _foreignLanguageRepository.AddRange(foreignLanguages);
             }
             #endregion
@@ -244,7 +271,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.LanguageLevels.Any())
             {
                 List<LanguageLevel> languageLevels = GetList<LanguageLevel>(_path + "/wwwroot/jsonData/languageLevel.json");
-                languageLevels.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                languageLevels.ForEach(x => x.CreatedDate = DateTime.Now);
+                languageLevels.Reverse();
                 _languageLevelRepository.AddRange(languageLevels);
             }
             #endregion
@@ -253,7 +281,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Regions.Any())
             {
                 List<Region> regions = GetList<Region>(_path + "/wwwroot/jsonData/region.json");
-                regions.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                regions.ForEach(x => x.CreatedDate = DateTime.Now);
+                regions.Reverse();
                 _regionRepository.AddRange(regions);
             }
             #endregion
@@ -262,7 +291,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Schedules.Any())
             {
                 List<Schedule> schedules = GetList<Schedule>(_path + "/wwwroot/jsonData/schedule.json");
-                schedules.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                schedules.ForEach(x => x.CreatedDate = DateTime.Now);
+                schedules.Reverse();
                 _scheduleRepository.AddRange(schedules);
             }
             #endregion
@@ -271,7 +301,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.SocialStatuses.Any())
             {
                 List<SocialStatus> socialStatuses = GetList<SocialStatus>(_path + "/wwwroot/jsonData/socialStatus.json");
-                socialStatuses.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                socialStatuses.ForEach(x => x.CreatedDate = DateTime.Now);
+                socialStatuses.Reverse();
                 _socialStatusRepository.AddRange(socialStatuses);
             }
             #endregion
@@ -280,7 +311,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.TypeOfEmployments.Any())
             {
                 List<TypeOfEmployment> typeOfEmployments = GetList<TypeOfEmployment>(_path + "/wwwroot/jsonData/typeOfEmployment.json");
-                typeOfEmployments.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                typeOfEmployments.ForEach(x => x.CreatedDate = DateTime.Now);
+                typeOfEmployments.Reverse();
                 _typeOfEmploymentRepository.AddRange(typeOfEmployments);
             }
             #endregion
@@ -289,7 +321,8 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Universities.Any())
             {
                 List<University> universities = GetList<University>(_path + "/wwwroot/jsonData/university.json");
-                universities.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                universities.ForEach(x => x.CreatedDate = DateTime.Now);
+                universities.Reverse();
                 _universityRepository.AddRange(universities);
             }
             #endregion
@@ -298,12 +331,12 @@ namespace RecruitmentAgencyCore.InitialData
             if (!_ctx.Districts.Any())
             {
                 List<District> districts = GetList<District>(_path + "/wwwroot/jsonData/district.json");
-                districts.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                districts.ForEach(x => x.CreatedDate = DateTime.Now);
+                districts.Reverse();
                 _districtRepository.AddRange(districts);
             }
             #endregion
 
-            await _ctx.SaveChangesAsync();
         }
 
         private List<T> GetList<T>(string path) where T : class

@@ -42,7 +42,7 @@ namespace RecruitmentAgencyCore.Data.ViewModels
         public int? TypeId { get; set; }
         public int? ParentId { get; set; }
 
-        public IEnumerable<MenuViewModel> MenuViewModels { get; set; }
+        public IEnumerable<MenuViewModel> ChildrenMenus { get; set; }
 
         public int? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }

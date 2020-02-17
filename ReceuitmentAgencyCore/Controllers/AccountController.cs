@@ -16,7 +16,7 @@ using RecruitmentAgencyCore.Service.Services;
 
 namespace RecruitmentAgencyCore.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
         private readonly RecruitmentAgencySignInManager _signInManager;
         private readonly ILogger<AccountController> _logger;
@@ -77,15 +77,16 @@ namespace RecruitmentAgencyCore.Controllers
         public async Task<RedirectToActionResult> DefineRoleAndRedirectToAction(string email)
         {
             User user = await _userRepository.FindAsync(x => x.Email == email);
-            ICollection<MenuRolePermission> menuRolePermissions = await _menuRolePermissionRepository.FindAllAsync(x => x.RoleId == user.RoleId);
+            ICollection<MenuRolePermission> menuRolePermissions = _menuRolePermissionRepository.GetAllIncluding(r => r.Role, p => p.Permission, m => m.Menu).ToList().FindAll(x => x.RoleId == user.RoleId);
             MenuService.GetMenuViewModels = _menuBuilder.GetMenu(menuRolePermissions);
-            MenuViewModel menu = _menuBuilder.GetMenu(menuRolePermissions).FirstOrDefault();
-            return RedirectToAction(menu.Action, menu.Controller);
+            MenuViewModel menu = _menuBuilder.GetMenu(menuRolePermissions)?.FirstOrDefault();
+            return RedirectToAction(menu?.Action, menu?.Controller);
         }
 
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            MenuService.GetMenuViewModels = null;
             return RedirectToAction("Index", "Home");
         }
     }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RecruitmentAgencyCore.Service.Models
 {
@@ -17,17 +18,17 @@ namespace RecruitmentAgencyCore.Service.Models
             _menuRepo = menuRepo;
         }
 
-        public IEnumerable<MenuViewModel> GetChildren(MenuViewModel menu)
+        public async Task<List<MenuViewModel>> GetChildrenAsync(MenuViewModel menu)
         {
-            List<MenuViewModel> res = new List<MenuViewModel>();
-            IEnumerable<MenuViewModel> children = _menuRepo.FindAll(x => x.ParentId == menu.ParentId).Select(x => new MenuViewModel(x));
+            ICollection<Menu> ch = await _menuRepo.FindAllAsync(x => x.ParentId == menu.Id);
+            List<MenuViewModel> children = ch.Select(x => new MenuViewModel(x)).ToList();
             return children;
         }
 
-        public IEnumerable<MenuViewModel> GetMenu(ICollection<MenuRolePermission> menuRolePermissions)
+        public List<MenuViewModel> GetMenu(ICollection<MenuRolePermission> menuRolePermissions)
         {
-            IEnumerable<MenuViewModel> res = menuRolePermissions.Where(x => x.Menu.ParentId == 0).Select(x => new MenuViewModel(x.Menu));
-            res.AsParallel().ForAll(x => x.MenuViewModels = GetChildren(x));
+            List<MenuViewModel> res = menuRolePermissions.Where(x => x.Menu?.ParentId == 0)?.Select(x => new MenuViewModel(x.Menu)).ToList();
+            res.ForEach(async x => x.ChildrenMenus = await GetChildrenAsync(x));
             return res;
         }
     }

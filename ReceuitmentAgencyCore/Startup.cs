@@ -101,11 +101,9 @@ namespace RecruitmentAgencyCore
 
             #endregion
 
-            services.AddTransient<Seeder>();
+            //services.AddTransient<Seeder>();
 
-            services.AddSingleton<IMenuBuilder, MenuBuilder>();
-            services.AddSingleton<MenuService>();
-
+            services.AddScoped<IMenuBuilder, MenuBuilder>();
 
             services.AddScoped<CustomUserStore>();
             services.AddScoped<RecruitmentAgencyUserStore>();
@@ -124,9 +122,9 @@ namespace RecruitmentAgencyCore
             {
                 app.UseDeveloperExceptionPage();
 
-                using IServiceScope scope = app.ApplicationServices.CreateScope();
-                var seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
-                seeder.Seed().Wait();
+                //using IServiceScope scope = app.ApplicationServices.CreateScope();
+                //Seeder seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
+                //await seeder.Seed();
             }
             else
             {
