@@ -6,11 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RecruitmentAgencyCore.Controllers
 {
-    public class EmployerController : Controller
+    public class BaseController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

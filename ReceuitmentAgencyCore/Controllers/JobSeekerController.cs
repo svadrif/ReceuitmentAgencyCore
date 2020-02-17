@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ReceuitmentAgencyCore.Models;
+using RecruitmentAgencyCore.Models;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
 
-namespace ReceuitmentAgencyCore.Controllers
+namespace RecruitmentAgencyCore.Controllers
 {
     [Authorize]
     public class JobSeekerController : Controller

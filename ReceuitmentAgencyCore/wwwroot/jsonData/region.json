@@ -1,9 +1,9 @@
-{
+п»ї{
   "JsonData": [
     {
       "Id": "0",
       "NameUz": "Toshkent",
-      "NameRu": "Ташкент",
+      "NameRu": "РўР°С€РєРµРЅС‚",
       "NameEn": "Tashkent",
       "CountryId": "1",
       "CreatedBy": "1",
@@ -14,7 +14,7 @@
     {
       "Id": "0",
       "NameUz": "Samarqand",
-      "NameRu": "Самарканд",
+      "NameRu": "РЎР°РјР°СЂРєР°РЅРґ",
       "NameEn": "Samarkand",
       "CountryId": "1",
       "CreatedBy": "1",
@@ -25,7 +25,7 @@
     {
       "Id": "0",
       "NameUz": "Jizzax",
-      "NameRu": "Джизак",
+      "NameRu": "Р”Р¶РёР·Р°Рє",
       "NameEn": "Jizzakh",
       "CountryId": "1",
       "CreatedBy": "1",

@@ -11,13 +11,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ReceuitmentAgencyCore.InitialData;
-using ReceuitmentAgencyCore.Security;
+using RecruitmentAgencyCore.InitialData;
+using RecruitmentAgencyCore.Security;
 using RecruitmentAgencyCore.Data;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
+using RecruitmentAgencyCore.Service.Interfaces;
+using RecruitmentAgencyCore.Service.Models;
+using RecruitmentAgencyCore.Service.Services;
 
-namespace ReceuitmentAgencyCore
+namespace RecruitmentAgencyCore
 {
     public class Startup
     {
@@ -35,7 +38,7 @@ namespace ReceuitmentAgencyCore
 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(20);
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
                
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
@@ -54,9 +57,7 @@ namespace ReceuitmentAgencyCore
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                
-
+                options.Lockout.MaxFailedAccessAttempts = 5;             
             }).AddEntityFrameworkStores<AppDbContext>()
               .AddDefaultTokenProviders()
               .AddUserStore<RecruitmentAgencyUserStore>()
@@ -100,10 +101,12 @@ namespace ReceuitmentAgencyCore
 
             #endregion
 
-
-      
             services.AddTransient<Seeder>();
-     
+
+            services.AddSingleton<IMenuBuilder, MenuBuilder>();
+            services.AddSingleton<MenuService>();
+
+
             services.AddScoped<CustomUserStore>();
             services.AddScoped<RecruitmentAgencyUserStore>();
             services.AddScoped<RecruitmentAgencyUserManager>();

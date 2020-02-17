@@ -1,6 +1,6 @@
 using System;
 
-namespace ReceuitmentAgencyCore.Models
+namespace RecruitmentAgencyCore.Models
 {
     public class ErrorViewModel
     {

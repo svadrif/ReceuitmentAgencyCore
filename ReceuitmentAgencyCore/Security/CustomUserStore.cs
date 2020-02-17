@@ -4,7 +4,7 @@ using RecruitmentAgencyCore.Data.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace ReceuitmentAgencyCore.Security
+namespace RecruitmentAgencyCore.Security
 {
     public class CustomUserStore : IDisposable
     {

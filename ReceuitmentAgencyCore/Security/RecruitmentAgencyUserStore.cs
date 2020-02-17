@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using RecruitmentAgencyCore.Data;
 using RecruitmentAgencyCore.Data.Models;
 
-namespace ReceuitmentAgencyCore.Security
+namespace RecruitmentAgencyCore.Security
 {
     public class RecruitmentAgencyUserStore : CustomUserStore, IUserStore<User>, IUserPasswordStore<User>, IDisposable
     {

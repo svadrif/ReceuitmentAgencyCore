@@ -4,26 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ReceuitmentAgencyCore.Security;
-using ReceuitmentAgencyCore.Models;
+using RecruitmentAgencyCore.Security;
+using RecruitmentAgencyCore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using RecruitmentAgencyCore.Data.Repository;
 using RecruitmentAgencyCore.Data.Models;
+using RecruitmentAgencyCore.Service.Interfaces;
+using RecruitmentAgencyCore.Data.ViewModels;
+using RecruitmentAgencyCore.Service.Services;
 
-namespace ReceuitmentAgencyCore.Controllers
+namespace RecruitmentAgencyCore.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private readonly ILogger<AccountController> _logger;
         private readonly RecruitmentAgencySignInManager _signInManager;
+        private readonly ILogger<AccountController> _logger;
         private readonly IGenericRepository<User> _userRepository;
+        private readonly IGenericRepository<MenuRolePermission> _menuRolePermissionRepository;
+        private readonly IMenuBuilder _menuBuilder;
+
         public AccountController(ILogger<AccountController> logger,
-            RecruitmentAgencySignInManager signInManager, IGenericRepository<User> userRepository)
+            RecruitmentAgencySignInManager signInManager, IGenericRepository<User> userRepository,
+            IGenericRepository<MenuRolePermission> menuRolePermissionRepository, IMenuBuilder menuBuilder)
         {
             _logger = logger;
             _signInManager = signInManager;
             _userRepository = userRepository;
+            _menuRolePermissionRepository = menuRolePermissionRepository;
+            _menuBuilder = menuBuilder;
         }
         public IActionResult Index()
         {
@@ -52,7 +61,7 @@ namespace ReceuitmentAgencyCore.Controllers
                 if (result.Succeeded)
                 {
                     HttpContext.Session.SetString("Email", model.Email);
-                    return RedirectToAction("Index", "JobSeeker");
+                    return await DefineRoleAndRedirectToAction(model.Email);
                 }
                 if (result.IsLockedOut)
                 {
@@ -65,9 +74,13 @@ namespace ReceuitmentAgencyCore.Controllers
             return View(model);
         }
 
-        public async Task DefineRoleAndRedirectToAction(string email)
+        public async Task<RedirectToActionResult> DefineRoleAndRedirectToAction(string email)
         {
-            var user = await _userRepository.FindAsync(x => x.Email == email);
+            User user = await _userRepository.FindAsync(x => x.Email == email);
+            ICollection<MenuRolePermission> menuRolePermissions = await _menuRolePermissionRepository.FindAllAsync(x => x.RoleId == user.RoleId);
+            MenuService.GetMenuViewModels = _menuBuilder.GetMenu(menuRolePermissions);
+            MenuViewModel menu = _menuBuilder.GetMenu(menuRolePermissions).FirstOrDefault();
+            return RedirectToAction(menu.Action, menu.Controller);
         }
 
         public async Task<IActionResult> Logout()

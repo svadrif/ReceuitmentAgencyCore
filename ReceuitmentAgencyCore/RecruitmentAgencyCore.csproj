@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,11 +21,11 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RecruitmentAgencyCore.Data\RecruitmentAgencyCore.Data.csproj" />
+    <ProjectReference Include="..\RecruitmentAgencyCore.Service\RecruitmentAgencyCore.Service.csproj" />
   </ItemGroup>
 
 

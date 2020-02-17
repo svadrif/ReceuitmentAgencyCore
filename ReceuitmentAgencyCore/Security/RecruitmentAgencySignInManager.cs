@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ReceuitmentAgencyCore.Security
+namespace RecruitmentAgencyCore.Security
 {
     public class RecruitmentAgencySignInManager : SignInManager<User>
     {
@@ -40,7 +40,6 @@ namespace ReceuitmentAgencyCore.Security
             var user = _userManager.FindByEmailAsync(userName).Result;
             user.LastLoginTime = DateTime.Now;
             
-
             return await base.PasswordSignInAsync(userName, password, rememberMe, shouldLockout);
         }
         public override Task SignInWithClaimsAsync(User user, AuthenticationProperties authenticationProperties, IEnumerable<Claim> additionalClaims)

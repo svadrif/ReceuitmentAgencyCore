@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ReceuitmentAgencyCore.Security;
+using RecruitmentAgencyCore.Security;
 using RecruitmentAgencyCore.Data;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReceuitmentAgencyCore.InitialData
+namespace RecruitmentAgencyCore.InitialData
 {
     public class Seeder
     {
@@ -39,6 +39,7 @@ namespace ReceuitmentAgencyCore.InitialData
         private readonly IGenericRepository<University> _universityRepository;
         private readonly IGenericRepository<District> _districtRepository;
         private readonly IGenericRepository<Menu> _menuRepository;
+        private readonly IGenericRepository<MenuRolePermission> _menuRolePermissionRepository;
        
         private readonly string _path;
 
@@ -52,7 +53,7 @@ namespace ReceuitmentAgencyCore.InitialData
                      IGenericRepository<LanguageLevel> languageLevelRepository, IGenericRepository<Region> regionRepository,
                      IGenericRepository<Schedule> scheduleRepository, IGenericRepository<SocialStatus> socialStatusRepository,
                      IGenericRepository<TypeOfEmployment> typeOfEmploymentRepository, IGenericRepository<University> universityRepository,
-                     IGenericRepository<District> districtRepository)
+                     IGenericRepository<District> districtRepository, IGenericRepository<MenuRolePermission> menuRolePermissionRepository)
         {
             _ctx = ctx;
             _path = hosting.ContentRootPath;
@@ -76,6 +77,7 @@ namespace ReceuitmentAgencyCore.InitialData
             _typeOfEmploymentRepository = typeOfEmploymentRepository;
             _universityRepository = universityRepository;
             _districtRepository = districtRepository;
+            _menuRolePermissionRepository = menuRolePermissionRepository;
         }
 
         public async Task Seed()
@@ -124,11 +126,29 @@ namespace ReceuitmentAgencyCore.InitialData
                 {
                     new Permission{ Name = "Read", CreatedBy = 1, CreatedDate = DateTime.Now },
                     new Permission{ Name = "Write", CreatedBy = 1, CreatedDate = DateTime.Now },
-                    new Permission{ Name = "Read | Write", CreatedBy = 1, CreatedDate = DateTime.Now },
-                    new Permission{ Name = "No access", CreatedBy = 1, CreatedDate = DateTime.Now }
+                    new Permission{ Name = "ReadWrite", CreatedBy = 1, CreatedDate = DateTime.Now },
+                    new Permission{ Name = "NoAccess", CreatedBy = 1, CreatedDate = DateTime.Now }
                 };
 
                 _permissionRepository.AddRange(permissions);
+            }
+            #endregion
+
+            #region Menus
+            if (!_ctx.Menus.Any())
+            {
+                List<Menu> menus = GetList<Menu>(_path + "/wwwroot/jsonData/menu.json");
+                menus.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                _menuRepository.AddRange(menus);
+            }
+            #endregion
+
+            #region MenuRolePermissions
+            if (!_ctx.MenuRolePermissions.Any())
+            {
+                List<MenuRolePermission> menuRolePermissions = GetList<MenuRolePermission>(_path + "/wwwroot/jsonData/menuRolePermission.json");
+                menuRolePermissions.AsParallel().ForAll(x => x.CreatedDate = DateTime.Now);
+                _menuRolePermissionRepository.AddRange(menuRolePermissions);
             }
             #endregion
 

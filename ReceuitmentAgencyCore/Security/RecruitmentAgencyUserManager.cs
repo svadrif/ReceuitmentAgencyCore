@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ReceuitmentAgencyCore.Security
+namespace RecruitmentAgencyCore.Security
 {
     public class RecruitmentAgencyUserManager : UserManager<User>
     {

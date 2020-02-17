@@ -1,0 +1,194 @@
+﻿{
+  "JsonData": [
+    {
+      "Id": "0",
+      "RoleId": "1",
+      "MenuId": "1",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "1",
+      "MenuId": "2",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "1",
+      "MenuId": "3",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "1",
+      "MenuId": "4",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "5",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "6",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "7",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "8",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "9",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "10",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "2",
+      "MenuId": "11",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "12",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "13",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "14",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "15",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "16",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "17",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "18",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    },
+    {
+      "Id": "0",
+      "RoleId": "3",
+      "MenuId": "19",
+      "PermissionId": "3",
+      "CreatedBy": "1",
+      "CreatedDate": "",
+      "ModifiedBy": "",
+      "ModifiedDate": ""
+    }
+  ]
+}
