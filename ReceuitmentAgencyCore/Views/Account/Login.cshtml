@@ -9,97 +9,97 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
+@*
+        <!DOCTYPE html>
+        <html lang="en">
 
-<!DOCTYPE html>
-<html lang="en">
+        <head>
 
-<head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+            <title>RecruitmentAgencyCore - Login</title>
 
-    <title>RecruitmentAgencyCore - Login</title>
+            <!-- Custom fonts for this template-->
+            <link href="~/AdminAssets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+            <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom fonts for this template-->
-    <link href="~/AdminAssets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+            <!-- Custom styles for this template-->
+            <link href="~/AdminAssets/css/sb-admin-2.min.css" rel="stylesheet">
+            <style>
+                #signIn {
+                    font-size: .8rem;
+                    border-radius: 10rem;
+                }
+            </style>
+        </head>
 
-    <!-- Custom styles for this template-->
-    <link href="~/AdminAssets/css/sb-admin-2.min.css" rel="stylesheet">
-    <style>
-        #signIn {
-            font-size: .8rem;
-            border-radius: 10rem;
-        }
-    </style>
-</head>
+        <body class="bg-gradient-primary">
 
-<body class="bg-gradient-primary">
+            <div class="container">
 
-    <div class="container">
+                <!-- Outer Row -->
+                <div class="row justify-content-center">
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8 col-md-6">
 
-            <div class="col-xl-6 col-lg-8 col-md-6">
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card-body p-0">
+                                <!-- Nested Row within Card Body -->
+                                <div class="row">
+                                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-12">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+            </div>
+            <form class="user" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" asp-for="Email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email...">
+                    <span asp-validation-for="Email" class="text-warning"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user" asp-for="Password" id="exampleInputPassword" placeholder="Password">
+                    <span asp-validation-for="Password" class="text-warning"></span>
+                </div>
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            @*<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>*@
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
-                                    </div>
-                                    <form class="user" method="post">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" asp-for="Email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email...">
-                                            <span asp-validation-for="Email" class="text-warning"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" asp-for="Password" id="exampleInputPassword" placeholder="Password">
-                                            <span asp-validation-for="Password" class="text-warning"></span>
-                                        </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" asp-for="RememberMe" id="customCheck">
+                        <label class="custom-control-label" for="customCheck" asp-for="RememberMe">Remember Me?</label>
+                    </div>
+                </div>
 
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" asp-for="RememberMe" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck" asp-for="RememberMe" >Remember Me?</label>
-                                            </div>
-                                        </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success btn-user btn-block" id="signIn" value="Sign In">
+                </div>
 
-                                        <div class="form-group">
-                                            <input type="submit" class="btn btn-success btn-user btn-block" id="signIn" value="Sign In">
-                                        </div>
-
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
-                                </div>
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                    <i class="fab fa-google fa-fw"></i> Login with Google
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                </a>
+            </form>
+            <hr>
+            <div class="text-center">
+                <a class="small" href="forgot-password.html">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+                <a class="small" href="register.html">Create an Account!</a>
+            </div>
+        </div>
+    </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="~/AdminAssets/vendor/jquery/jquery.min.js"></script>
@@ -110,6 +110,109 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/AdminAssets/js/sb-admin-2.min.js"></script>
+
+    </body>
+    </html>
+
+*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RecruitmentAgencyCore - Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/LoginAssets/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('../LoginAssets/images/bg-01.jpg');">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" method="post">
+                    <span class="login100-form-logo">
+                        <i class="zmdi zmdi-landscape"></i>
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Log in
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" asp-for="Email" placeholder="Email...">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        <span asp-validation-for="Email" class="text-warning"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" asp-for="Password" placeholder="Password">
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                        <span asp-validation-for="Password" class="text-warning"></span>
+                    </div>
+
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="RememberMe" type="checkbox" asp-for="RememberMe">
+                        <label class="label-checkbox100" for="RememberMe">
+                            Remember me
+                        </label>
+
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="#">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/LoginAssets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/LoginAssets/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginAssets/js/main.js"></script>
 
 </body>
 </html>

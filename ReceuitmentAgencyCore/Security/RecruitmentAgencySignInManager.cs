@@ -37,9 +37,9 @@ namespace RecruitmentAgencyCore.Security
 
         public override async Task<SignInResult> PasswordSignInAsync(string userName, string password, bool rememberMe, bool shouldLockout)
         {
-            var user = _userManager.FindByEmailAsync(userName).Result;
+            User user = _userManager.FindByEmailAsync(userName).Result;
             user.LastLoginTime = DateTime.Now;
-            
+            await _db.SaveChangesAsync();
             return await base.PasswordSignInAsync(userName, password, rememberMe, shouldLockout);
         }
         public override Task SignInWithClaimsAsync(User user, AuthenticationProperties authenticationProperties, IEnumerable<Claim> additionalClaims)

@@ -38,14 +38,12 @@ namespace RecruitmentAgencyCore
 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.IdleTimeout = TimeSpan.FromSeconds(20);
                
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
             
-            
-
             services.AddMvc()
                 .AddSessionStateTempDataProvider();
 
@@ -103,7 +101,8 @@ namespace RecruitmentAgencyCore
 
             //services.AddTransient<Seeder>();
 
-            services.AddScoped<IMenuBuilder, MenuBuilder>();
+            services.AddTransient<IMenuBuilder, MenuBuilder>();
+            services.AddTransient<MenuService>();
 
             services.AddScoped<CustomUserStore>();
             services.AddScoped<RecruitmentAgencyUserStore>();

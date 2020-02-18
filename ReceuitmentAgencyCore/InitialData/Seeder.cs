@@ -109,7 +109,7 @@ namespace RecruitmentAgencyCore.InitialData
                 {
                     user = new User()
                     {
-                        UserName = "Firdavs",
+                        UserName = "developer6098@gmail.com",
                         Email = "developer6098@gmail.com",
                         PhoneNumber = "933986098",
                         RoleId = 1,

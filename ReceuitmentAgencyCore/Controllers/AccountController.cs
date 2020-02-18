@@ -13,18 +13,21 @@ using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Service.Interfaces;
 using RecruitmentAgencyCore.Data.ViewModels;
 using RecruitmentAgencyCore.Service.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace RecruitmentAgencyCore.Controllers
 {
     public class AccountController : Controller
     {
         private readonly RecruitmentAgencySignInManager _signInManager;
+        private readonly RecruitmentAgencyUserManager _userManager;
+
         private readonly ILogger<AccountController> _logger;
         private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<MenuRolePermission> _menuRolePermissionRepository;
         private readonly IMenuBuilder _menuBuilder;
 
-        public AccountController(ILogger<AccountController> logger,
+        public AccountController(ILogger<AccountController> logger, RecruitmentAgencyUserManager userManager,
             RecruitmentAgencySignInManager signInManager, IGenericRepository<User> userRepository,
             IGenericRepository<MenuRolePermission> menuRolePermissionRepository, IMenuBuilder menuBuilder)
         {
@@ -33,16 +36,54 @@ namespace RecruitmentAgencyCore.Controllers
             _userRepository = userRepository;
             _menuRolePermissionRepository = menuRolePermissionRepository;
             _menuBuilder = menuBuilder;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Login()
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterAsync(RegisterViewModel register)
+        {
+            if (ModelState.IsValid)
+            {
+                if (register.Password != register.PasswordConfirm)
+                {
+                    throw new InvalidOperationException("Failed to create new user");
+                }
+                var user = await _userManager.FindByEmailAsync(register.Email);
+                if (user == null)
+                {
+                    user = new User()
+                    {
+                        UserName = register.Email,
+                        Email = register.Email,
+                        PhoneNumber = register.PhoneNumber,
+                        RoleId = register.RoleId,
+                        IsActive = true
+                    };
+                    var res = await _userManager.CreateAsync(user, register.Password);
+                    if (res != IdentityResult.Success)
+                    {
+                        throw new InvalidOperationException("Failed to create new user");
+                    }
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Failed to create new user");
+            return View();
+        }
+
+        public async Task<IActionResult> Login()
         {
             if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "JobSeeker");
+            {              
+                return await DefineRoleAndRedirectToAction(User.Identity.Name);
             }
 
             return View();
@@ -76,11 +117,17 @@ namespace RecruitmentAgencyCore.Controllers
 
         public async Task<RedirectToActionResult> DefineRoleAndRedirectToAction(string email)
         {
-            User user = await _userRepository.FindAsync(x => x.Email == email);
-            ICollection<MenuRolePermission> menuRolePermissions = _menuRolePermissionRepository.GetAllIncluding(r => r.Role, p => p.Permission, m => m.Menu).ToList().FindAll(x => x.RoleId == user.RoleId);
-            MenuService.GetMenuViewModels = _menuBuilder.GetMenu(menuRolePermissions);
-            MenuViewModel menu = _menuBuilder.GetMenu(menuRolePermissions)?.FirstOrDefault();
-            return RedirectToAction(menu?.Action, menu?.Controller);
+            if (!string.IsNullOrEmpty(email))
+            {
+                User user = await _userRepository.FindAsync(x => x.Email == email);
+                ICollection<MenuRolePermission> menuRolePermissions = _menuRolePermissionRepository.GetAllIncluding(r => r.Role, p => p.Permission, m => m.Menu).ToList().FindAll(x => x.RoleId == user.RoleId);
+                MenuService.GetMenuViewModels = _menuBuilder.GetMenu(menuRolePermissions);
+                MenuViewModel menu = MenuService.GetMenuViewModels?.FirstOrDefault();
+                return RedirectToAction(menu?.Action, menu?.Controller);
+            }
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+          
         }
 
         public async Task<IActionResult> Logout()
