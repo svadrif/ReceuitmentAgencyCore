@@ -1,0 +1,191 @@
+﻿@using RecruitmentAgencyCore.Data.ViewModels;
+@model JobSeekerViewModel
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Register Employer</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="~/AdminAssets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/RegisterAssets/jquery.maskedinput.min.js"></script>
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="~/RegisterAssets/css/montserrat-font.css">
+    <link rel="stylesheet" type="text/css" href="~/RegisterAssets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="~/RegisterAssets/css/style.css" />
+</head>
+<body class="form-v10">
+    <div class="page-content">
+        <div class="form-v10-content">
+            <form class="form-detail" method="post" id="myform" asp-action="Register" asp-controller="JobSeeker" asp-antiforgery="true" , enctype="multipart/form-data">
+                <div class="form-left">
+                    <h2>General Information</h2>
+                    <div class="form-row">
+                        <input type="text" asp-for="FullName" class="company" placeholder="Fullname*" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" asp-for="AboutMe" class="company" placeholder="About yourself">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <input type="text" asp-for="BirthDate" placeholder="Birthdate">
+                        </div>
+                        <div class="form-row form-row-2">
+                            <input type="text" asp-for="Phone" placeholder="Phone Number (2)">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <select asp-for="CitizenshipId" asp-items="@ViewBag.Citizenship">
+                            <option value="0" selected disabled>Select citizenship</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-checkbox">
+                            <label class="container">
+                                <p>Ready for mission?</p>
+                                <input type="checkbox" asp-for="IsReadyForMission">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="form-checkbox">
+                            <label class="container">
+                                <p>Ready for relocation?</p>
+                                <input type="checkbox" asp-for="IsReadyForRelocation">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <select asp-for="GenderId" asp-items="@ViewBag.Gender">
+                                <option value="0" selected disabled>Select gender</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="form-row form-row-2 mb-1">
+                            <main class="main_full">
+                                <div class="container">
+                                    <div class="panel">
+                                        <div class="button_outer">
+                                            <div class="btn_upload">
+                                                <input type="file" id="upload_file" name="file">
+                                                Upload your photo
+                                            </div>
+                                            <div class="processing_bar"></div>
+                                            <div class="success_box"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="error_msg"></div>
+                        <div class="uploaded_file_view" id="uploaded_view">
+                            <span class="file_remove">X</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-right">
+                    <h2>Contact Details</h2>
+
+                    <div class="form-group m">
+                        <div class="form-row-1 t">
+                            <p>Driver licenses:</p>
+                        </div>
+                        <div class="form-group r">
+                            @foreach (var item in ViewBag.DriverLicenses as SelectList)
+                            {
+                                <div class="checkbox checkbox-success checkbox-circle">
+                                    <input type="checkbox" class="styled" name="DriverLicense" id="@item.Value" value="@item.Value">
+                                    <label for="@item.Value">@item.Text</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <select asp-for="CountryId" asp-items="@ViewBag.Country">
+                            <option value="0" selected disabled>Select country</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="form-row">
+                        <select asp-for="RegionId" asp-items="@ViewBag.Region">
+                            <option value="0" selected disabled>Select region</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="form-row">
+                        <select asp-for="DistrictId" asp-items="@ViewBag.District">
+                            <option value="0" selected disabled>Select district</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" asp-for="Address" class="company" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <select asp-for="SocialStatusId" asp-items="@ViewBag.SocialStatus">
+                                <option value="0" selected disabled>Select social status</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="form-row form-row-2">
+                            <select asp-for="FamilyStatusId" asp-items="@ViewBag.FamilyStatus">
+                                <option value="0" selected disabled>Select family status</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <input type="text" asp-for="Website" class="company" placeholder="Your website">
+                        </div>
+                        <div class="form-row form-row-2">
+                            <input type="text" asp-for="LinkedIn" placeholder="LinkedIn">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <input type="text" asp-for="Facebook" placeholder="Facebook">
+                        </div>
+                        <div class="form-row form-row-2">
+                            <input type="text" asp-for="Instagram" placeholder="Instagram">
+                        </div>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="register" class="register" value="Register">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/RegisterAssets/register.js"></script>

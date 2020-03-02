@@ -14,6 +14,7 @@ namespace RecruitmentAgencyCore.Data
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Citizenship> Citizenships { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Culture> Cultures { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Education> Educations { get; set; }
@@ -26,11 +27,13 @@ namespace RecruitmentAgencyCore.Data
         public DbSet<JobSeeker> JobSeekers { get; set; }
         public DbSet<JobSeekerForeignLanguage> JobSeekerForeignLanguages { get; set; }
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
+        public DbSet<Logging> Loggings { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuRolePermission> MenuRolePermissions { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<PreviousWork> PreviousWorks { get; set; }
         public DbSet<Region> Regions { get; set; }
+        public DbSet<Resource> Resources { get; set; }
         public DbSet<Response> Responses { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -48,6 +51,7 @@ namespace RecruitmentAgencyCore.Data
             builder.ApplyConfiguration(new BranchMap());
             builder.ApplyConfiguration(new CitizenshipMap());
             builder.ApplyConfiguration(new CountryMap());
+            builder.ApplyConfiguration(new CultureMap());
             builder.ApplyConfiguration(new CurrencyMap());
             builder.ApplyConfiguration(new DistrictMap());
             builder.ApplyConfiguration(new EducationMap());
@@ -60,11 +64,13 @@ namespace RecruitmentAgencyCore.Data
             builder.ApplyConfiguration(new JobSeekerForeignLanguageMap()); 
             builder.ApplyConfiguration(new JobSeekerMap()); 
             builder.ApplyConfiguration(new LanguageLevelMap());
+            builder.ApplyConfiguration(new LoggingMap());
             builder.ApplyConfiguration(new MenuMap()); 
             builder.ApplyConfiguration(new MenuRolePermissionMap());
             builder.ApplyConfiguration(new PermissionMap());
             builder.ApplyConfiguration(new PreviousWorkMap());
             builder.ApplyConfiguration(new RegionMap());
+            builder.ApplyConfiguration(new ResourceMap());
             builder.ApplyConfiguration(new ResponseMap());
             builder.ApplyConfiguration(new ResumeMap());
             builder.ApplyConfiguration(new RoleMap());
@@ -75,7 +81,6 @@ namespace RecruitmentAgencyCore.Data
             builder.ApplyConfiguration(new UniversityMap());
             builder.ApplyConfiguration(new UserMap());
             builder.ApplyConfiguration(new VacancyMap());
-            
         }
     }
 }

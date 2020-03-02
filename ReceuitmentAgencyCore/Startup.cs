@@ -19,6 +19,12 @@ using RecruitmentAgencyCore.Data.Repository;
 using RecruitmentAgencyCore.Service.Interfaces;
 using RecruitmentAgencyCore.Service.Models;
 using RecruitmentAgencyCore.Service.Services;
+using RecruitmentAgencyCore.Helpers;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
+using RecruitmentAgencyCore.Models;
+using System.Threading;
 
 namespace RecruitmentAgencyCore
 {
@@ -36,9 +42,15 @@ namespace RecruitmentAgencyCore
         {
             services.AddDistributedMemoryCache();
 
+            services.AddTransient<IStringLocalizer, DBStringLocalizer>();
+
+            services.AddControllersWithViews()
+                    .AddDataAnnotationsLocalization()
+                    .AddViewLocalization();
+
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(20);
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
                
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
@@ -69,6 +81,7 @@ namespace RecruitmentAgencyCore
             services.AddTransient<IGenericRepository<Branch>, GenericRepository<Branch>>();
             services.AddTransient<IGenericRepository<Citizenship>, GenericRepository<Citizenship>>();
             services.AddTransient<IGenericRepository<Country>, GenericRepository<Country>>();
+            services.AddTransient<IGenericRepository<Culture>, GenericRepository<Culture>>();
             services.AddTransient<IGenericRepository<Currency>, GenericRepository<Currency>>();
             services.AddTransient<IGenericRepository<District>, GenericRepository<District>>();
             services.AddTransient<IGenericRepository<Education>, GenericRepository<Education>>();
@@ -81,12 +94,14 @@ namespace RecruitmentAgencyCore
             services.AddTransient<IGenericRepository<JobSeeker>, GenericRepository<JobSeeker>>();
             services.AddTransient<IGenericRepository<JobSeekerForeignLanguage>, GenericRepository<JobSeekerForeignLanguage>>();
             services.AddTransient<IGenericRepository<LanguageLevel>, GenericRepository<LanguageLevel>>();
+            services.AddTransient<IGenericRepository<Logging>, GenericRepository<Logging>>();
             services.AddTransient<IGenericRepository<Menu>, GenericRepository<Menu>>();
             services.AddTransient<IGenericRepository<MenuRolePermission>, GenericRepository<MenuRolePermission>>();
             services.AddTransient<IGenericRepository<Permission>, GenericRepository<Permission>>();
             services.AddTransient<IGenericRepository<PreviousWork>, GenericRepository<PreviousWork>>();
             services.AddTransient<IGenericRepository<Region>, GenericRepository<Region>>();
             services.AddTransient<IGenericRepository<Response>, GenericRepository<Response>>();
+            services.AddTransient<IGenericRepository<Resource>, GenericRepository<Resource>>();
             services.AddTransient<IGenericRepository<Resume>, GenericRepository<Resume>>();
             services.AddTransient<IGenericRepository<Role>, GenericRepository<Role>>();
             services.AddTransient<IGenericRepository<Schedule>, GenericRepository<Schedule>>();
@@ -99,10 +114,15 @@ namespace RecruitmentAgencyCore
 
             #endregion
 
-            //services.AddTransient<Seeder>();
-
+            services.AddTransient<Seeder>();
+          
             services.AddTransient<IMenuBuilder, MenuBuilder>();
-            services.AddTransient<MenuService>();
+            services.AddTransient<MenuModel>();
+
+            services.AddTransient<UserModel>();
+
+            services.AddTransient<RouteHelper>();
+            services.AddTransient<FileHelper>();
 
             services.AddScoped<CustomUserStore>();
             services.AddScoped<RecruitmentAgencyUserStore>();
@@ -110,7 +130,9 @@ namespace RecruitmentAgencyCore
             services.AddScoped<RecruitmentAgencySignInManager>();
 
             services.AddHttpContextAccessor();
-            services.AddControllersWithViews();
+
+          
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
@@ -121,9 +143,10 @@ namespace RecruitmentAgencyCore
             {
                 app.UseDeveloperExceptionPage();
 
-                //using IServiceScope scope = app.ApplicationServices.CreateScope();
-                //Seeder seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
-                //await seeder.Seed();
+                using IServiceScope scope = app.ApplicationServices.CreateScope();
+                Seeder seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
+                seeder.Seed();
+
             }
             else
             {
@@ -131,6 +154,20 @@ namespace RecruitmentAgencyCore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("uz"),
+                new CultureInfo("ru"),
+                new CultureInfo("en")             
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("uz"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures,
+                
+            });
 
             app.UseSession();
             app.UseHttpsRedirection();

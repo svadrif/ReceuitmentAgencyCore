@@ -37,7 +37,7 @@
 <body>
 
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('../LoginAssets/images/bg-01.jpg');">
+        <div class="container-login100" style="background-image: url('../../LoginAssets/images/bg-01.jpg');">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" method="post">
                     <span class="login100-form-logo">
@@ -45,7 +45,7 @@
                     </span>
 
                     <span class="login100-form-title p-b-34 p-t-27">
-                        Log in
+                        Register
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter email">
@@ -56,7 +56,7 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Enter phonenumber">
                         <input class="input100" type="tel" asp-for="PhoneNumber" placeholder="PhoneNumber...">
-                        <span class="focus-input100" data-placeholder="&#xf228;"></span>
+                        <span class="focus-input100" data-placeholder="&#xf158;"></span>
                         <span asp-validation-for="PhoneNumber" class="text-warning"></span>
                     </div>
 
@@ -68,26 +68,20 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Confirm password">
                         <input class="input100" type="password" asp-for="PasswordConfirm" placeholder="Confirm your password">
-                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                        <span class="focus-input100" data-placeholder="&#xf190;"></span>
                         <span asp-validation-for="PasswordConfirm" class="text-warning"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Choose...">
-                        <div class="input-group">
-                            <div class="p-t-10">
-                                <label class="radio-container m-r-45">
-                                    Employer
-                                    <input type="radio" asp-for="RoleId" value="2" id="Employer" checked>
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="radio-container">
-                                    Jobseeker
-                                    <input type="radio" asp-for="RoleId" value="3" id="JobSeeker">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
+                    <div class="col-sm-12 mb-4">
+                        <div class="toggle">
+                            <input type="radio" asp-for="RoleId" value="2" id="Employer">
+                            <label for="Employer">Employer</label>
 
+                            <input type="radio" asp-for="RoleId" value="3" id="JobSeeker" checked>
+                            <label for="JobSeeker">JobSeeker</label>
+
+                            <div id="flap"><span class="content">productive</span></div>
+                        </div>
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -97,8 +91,12 @@
                     </div>
 
                     <div class="text-center p-t-90">
-                        <a class="txt1" href="/Account/Login">
-                            Have an account? Login
+                        <a href="/Home/Index" class="txt1">
+                            Back
+                        </a>
+                        <i class="fa fa-sad-cry"></i>
+                        <a class="txt1 ml-3" href="/Account/Login">
+                            Already have an account? Login
                         </a>
                     </div>
                 </form>
@@ -125,6 +123,11 @@
     <script src="~/LoginAssets/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="~/LoginAssets/js/main.js"></script>
+    <script src="~/RegisterAssets/jquery.maskedinput.min.js"></script>
 
 </body>
 </html>
+
+<script>
+    $("#PhoneNumber").mask("(AA) AAA-AA-AA");
+</script>

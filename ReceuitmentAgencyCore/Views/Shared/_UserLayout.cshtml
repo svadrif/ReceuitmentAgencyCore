@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using RecruitmentAgencyCore.Service.Models
+@using Microsoft.AspNetCore.Mvc.Localization
+
 @inject IHttpContextAccessor HttpContextAccessor
+@inject IViewLocalizer Localizer
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +41,20 @@
     <!-- Main CSS-->
     <link href="~/UserAssets/css/theme.css" rel="stylesheet" media="all">
 
+    <!-- For resume -->
+    <link rel="stylesheet" href="~/UserAssets/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/UserAssets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/UserAssets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/UserAssets/css/main.css">
+    <link rel="stylesheet" href="~/UserAssets/css/style.css">
+    <link rel="stylesheet" href="~/UserAssets/css/responsive.css">
+
+    <!-- FontsOnline -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- JavaScripts -->
+    <script src="~/UserAssets/js/vendors/modernizr.js"></script>
+
 </head>
 
 <body class="animsition">
@@ -50,13 +68,31 @@
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">
-                    <div class="image img-cir img-120">
-                        <img src="~/UserAssets/images/icon/avatar-big-01.jpg" alt="John Doe" />
-                    </div>
-                    <h4 class="name">@HttpContextAccessor.HttpContext.Session.GetString("Email") </h4>
+
+                    @if (UserModel.JobSeeker != null)
+                    {
+                        <div class="image img-cir img-120">
+                            <img src="@UserModel.JobSeeker?.PhotoPath" />
+                        </div>
+                        <h4 class="name">@UserModel.JobSeeker?.FullName </h4>
+                    }
+                    else if (UserModel.Employer != null)
+                    {
+                        <div class="image img-cir img-120">
+                            <img src="@UserModel.Employer?.Logo" />
+                        </div>
+                        <h4 class="name">@UserModel.Employer?.Name </h4>
+                    }
+                    else
+                    {
+                        <div class="image img-cir img-120">
+                            <img src="~/UserAssets/images/noimage.png" />
+                        </div>
+                        <h4 class="name">@HttpContextAccessor.HttpContext.User.Identity.Name</h4>
+                    }
                     <a href="/Account/Logout">Sign out</a>
                 </div>
-               
+
                 @await Html.PartialAsync("_Menu")
             </div>
         </aside>
@@ -384,7 +420,7 @@
             </section>
             <!-- END BREADCRUMB-->
             <!-- STATISTIC-->
-            
+
             @RenderBody()
 
             <section>
@@ -392,7 +428,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                <p>Copyright © @DateTime.Now.Year Regruitment Agency. All rights reserved.</p>
                             </div>
                         </div>
                     </div>
@@ -427,10 +463,22 @@
     <script src="~/UserAssets/vendor/vector-map/jquery.vmap.min.js"></script>
     <script src="~/UserAssets/vendor/vector-map/jquery.vmap.sampledata.js"></script>
     <script src="~/UserAssets/vendor/vector-map/jquery.vmap.world.js"></script>
- 
+
 
     <!-- Main JS-->
     <script src="~/UserAssets/js/main.js"></script>
+
+    <!-- For resume -->
+    <!-- JavaScripts -->
+    <script src="~/UserAssets/js/vendors/jquery/jquery.min.js"></script>
+    <script src="~/UserAssets/js/vendors/bootstrap.min.js"></script>
+    <script src="~/UserAssets/js/vendors/owl.carousel.min.js"></script>
+    <script src="~/UserAssets/js/vendors/jquery.isotope.min.js"></script>
+    <script src="~/UserAssets/js/vendors/main.js"></script>
+
+    <!-- Begin Map Script-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="~/UserAssets/js/vendors/map.js"></script>
 
 </body>
 

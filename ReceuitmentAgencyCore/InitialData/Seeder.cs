@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RecruitmentAgencyCore.Security;
 using RecruitmentAgencyCore.Data;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
+using RecruitmentAgencyCore.Security;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RecruitmentAgencyCore.InitialData
 {
@@ -19,11 +17,14 @@ namespace RecruitmentAgencyCore.InitialData
     {
         private readonly AppDbContext _ctx;
         private readonly RecruitmentAgencyUserManager _userManager;
+        private readonly RecruitmentAgencyUserStore _userStore;
 
+        private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<Role> _roleRepository;
         private readonly IGenericRepository<Permission> _permissionRepository;
         private readonly IGenericRepository<Gender> _genderRepository;
         private readonly IGenericRepository<Country> _countryRepository;
+        private readonly IGenericRepository<Culture> _cultureRepo;
         private readonly IGenericRepository<Experience> _experienceRepository;
         private readonly IGenericRepository<FamilyStatus> _familyStatusRepository;
         private readonly IGenericRepository<Branch> _branchRepository;
@@ -40,12 +41,12 @@ namespace RecruitmentAgencyCore.InitialData
         private readonly IGenericRepository<District> _districtRepository;
         private readonly IGenericRepository<Menu> _menuRepository;
         private readonly IGenericRepository<MenuRolePermission> _menuRolePermissionRepository;
-       
+
         private readonly string _path;
 
-        public Seeder(AppDbContext ctx, IHostEnvironment hosting, RecruitmentAgencyUserManager userManager,
-                     IGenericRepository<Role> roleRepository, IGenericRepository<Permission> permissionRepository,
-                     IGenericRepository<Gender> genderRepository, IGenericRepository<Country> countryRepository,
+        public Seeder(AppDbContext ctx, RecruitmentAgencyUserStore userStore, IHostEnvironment hosting, RecruitmentAgencyUserManager userManager,
+                     IGenericRepository<User> userRepository, IGenericRepository<Role> roleRepository, IGenericRepository<Permission> permissionRepository,
+                     IGenericRepository<Gender> genderRepository, IGenericRepository<Country> countryRepository, IGenericRepository<Culture> cultureRepo,
                      IGenericRepository<Menu> menuRepository, IGenericRepository<Experience> experienceRepository,
                      IGenericRepository<FamilyStatus> familyStatusRepository, IGenericRepository<Branch> branchRepository,
                      IGenericRepository<Citizenship> citizenshipRepository, IGenericRepository<Currency> currencyRepository,
@@ -58,10 +59,13 @@ namespace RecruitmentAgencyCore.InitialData
             _ctx = ctx;
             _path = hosting.ContentRootPath;
             _userManager = userManager;
+            _userStore = userStore;
+            _userRepository = userRepository;
             _roleRepository = roleRepository;
             _permissionRepository = permissionRepository;
             _genderRepository = genderRepository;
             _countryRepository = countryRepository;
+            _cultureRepo = cultureRepo;
             _menuRepository = menuRepository;
             _experienceRepository = experienceRepository;
             _familyStatusRepository = familyStatusRepository;
@@ -80,9 +84,9 @@ namespace RecruitmentAgencyCore.InitialData
             _menuRolePermissionRepository = menuRolePermissionRepository;
         }
 
-        public async Task Seed()
+        public void Seed()
         {
-            _ctx.Database.EnsureCreated();    
+            _ctx.Database.EnsureCreated();
 
             #region Roles
             if (!_ctx.Roles.Any())
@@ -91,36 +95,38 @@ namespace RecruitmentAgencyCore.InitialData
                 {
                     new Role{ Name = "Admin", CreatedBy = 1, CreatedDate = DateTime.Now },
                     new Role{ Name = "Employer", CreatedBy = 1, CreatedDate = DateTime.Now },
-                    new Role{ Name = "JobSeeker", CreatedBy = 1, CreatedDate = DateTime.Now }           
+                    new Role{ Name = "JobSeeker", CreatedBy = 1, CreatedDate = DateTime.Now }
                 };
-                foreach (var item in roles)
-                {
-                    _roleRepository.Add(item);
-                }
-                //_roleRepository.AddRange(roles);
+                roles.Reverse();
+                _roleRepository.AddRange(roles);
             }
             #endregion
 
             #region Users
             if (!_ctx.Users.Any())
             {
-                var user = await _userManager.FindByEmailAsync("developer6098@gmail.com");
-                if (user == null)
+                User user = new User
                 {
-                    user = new User()
-                    {
-                        UserName = "developer6098@gmail.com",
-                        Email = "developer6098@gmail.com",
-                        PhoneNumber = "933986098",
-                        RoleId = 1,
-                        IsActive = true
-                    };
-                    var res = await _userManager.CreateAsync(user, "6098DeveloperC#");
-                    if (res != IdentityResult.Success)
-                    {
-                        throw new InvalidOperationException("Failed to create default user");
-                    }
-                }
+                    UserName = "developer6098@gmail.com",
+                    NormalizedUserName = "developer6098@gmail.com",
+                    Email = "developer6098@gmail.com",
+                    NormalizedEmail = "developer6098@gmail.com",
+                    PhoneNumber = "(93) 398-60-98",
+                    PhoneNumberConfirmed = true,
+                    OpenPassword = "6098DeveloperC#",
+                    EmailConfirmed = true,
+                    LockoutEnabled = false,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    IsActive = true,
+                    RoleId = _roleRepository.Find(x => x.Name.ToLower() == "admin").Id,
+                    CreatedDate = DateTime.Now.Date
+                };
+
+                PasswordHasher<User> password = new PasswordHasher<User>();
+                string hashed = password.HashPassword(user, "6098DeveloperC#");
+                user.PasswordHash = hashed;
+
+                _userRepository.Add(user);
             }
             #endregion
 
@@ -138,8 +144,9 @@ namespace RecruitmentAgencyCore.InitialData
                 {
                     _permissionRepository.Add(item);
                 }
+                //permissions.Reverse();
                 //_permissionRepository.AddRange(permissions);
-                
+
             }
             #endregion
 
@@ -152,6 +159,7 @@ namespace RecruitmentAgencyCore.InitialData
                 {
                     _menuRepository.Add(item);
                 }
+                //menus.Reverse();
                 //_menuRepository.AddRange(menus);
             }
             #endregion
@@ -165,6 +173,7 @@ namespace RecruitmentAgencyCore.InitialData
                 {
                     _menuRolePermissionRepository.Add(item);
                 }
+                //menuRolePermissions.Reverse();
                 //_menuRolePermissionRepository.AddRange(menuRolePermissions);
             }
             #endregion
@@ -174,11 +183,13 @@ namespace RecruitmentAgencyCore.InitialData
             {
                 Gender[] genders = new Gender[]
                 {
-                    new Gender{ NameUz = "Ayol", NameRu = "Женский", NameEn = "Female"},
-                    new Gender{ NameUz = "Erkak", NameRu = "Мужской", NameEn = "Male" }               
+                    new Gender{ NameUz = "Erkak", NameRu = "Мужской", NameEn = "Male" },
+                    new Gender{ NameUz = "Ayol", NameRu = "Женский", NameEn = "Female"}
                 };
-
-                _genderRepository.AddRange(genders);
+                foreach (var item in genders)
+                {
+                    _genderRepository.Add(item);
+                }
             }
             #endregion
 
@@ -199,12 +210,9 @@ namespace RecruitmentAgencyCore.InitialData
             {
                 List<Experience> experiences = GetList<Experience>(_path + "/wwwroot/jsonData/experience.json");
                 experiences.ForEach(x => x.CreatedDate = DateTime.Now);
-                foreach (var item in experiences)
-                {
-                    _experienceRepository.Add(item);
-                }
-                //_experienceRepository.AddRange(experiences);
-                
+                experiences.Reverse();
+                _experienceRepository.AddRange(experiences);
+
             }
             #endregion
 
@@ -223,8 +231,12 @@ namespace RecruitmentAgencyCore.InitialData
             {
                 List<Branch> branches = GetList<Branch>(_path + "/wwwroot/jsonData/branch.json");
                 branches.ForEach(x => x.CreatedDate = DateTime.Now);
-                branches.Reverse();
-                _branchRepository.AddRange(branches);
+                foreach (var item in branches)
+                {
+                    _branchRepository.Add(item);
+                }
+                //branches.Reverse();
+                //_branchRepository.AddRange(branches);
             }
             #endregion
 
@@ -248,7 +260,7 @@ namespace RecruitmentAgencyCore.InitialData
             #endregion
 
             #region EducationTypes
-            if (_ctx.EducationTypes.Any())
+            if (!_ctx.EducationTypes.Any())
             {
                 List<EducationType> educationTypes = GetList<EducationType>(_path + "/wwwroot/jsonData/educationType.json");
                 educationTypes.ForEach(x => x.CreatedDate = DateTime.Now);
@@ -258,7 +270,7 @@ namespace RecruitmentAgencyCore.InitialData
             #endregion
 
             #region ForeignLanguages
-            if (_ctx.ForeignLanguages.Any())
+            if (!_ctx.ForeignLanguages.Any())
             {
                 List<ForeignLanguage> foreignLanguages = GetList<ForeignLanguage>(_path + "/wwwroot/jsonData/foreignLanguage.json");
                 foreignLanguages.ForEach(x => x.CreatedDate = DateTime.Now);
@@ -337,8 +349,67 @@ namespace RecruitmentAgencyCore.InitialData
             }
             #endregion
 
+            #region Cultures
+            if (!_ctx.Cultures.Any())
+            {
+                Culture[] cultures = new Culture[]
+                {
+                     new Culture
+                    {
+                        Name = "en",
+                        Resources = new List<Resource>()
+                        {
+                            new Resource { Key = "ForJobseekers", Value = "For Jobseekers" },
+                            new Resource { Key = "ForEmployers", Value = "For Employers" },
+                            new Resource { Key = "Services", Value =  "Services" },
+                            new Resource { Key = "Blog", Value = "Blog" },
+                            new Resource { Key = "SignUp", Value = "Sign up" },
+                            new Resource { Key = "Login", Value =  "Login" },
+                            new Resource { Key = "StartNow", Value = "Start building your own career now!" },
+                            new Resource { Key = "KetWord", Value = "Key words" },
+                            new Resource { Key = "AllRegions", Value =  "All regions" },
+                            new Resource { Key = "WeOffer", Value = "We offer&nbsp;<a href='job-listing.html'>2,989 job vacancies</a> right now!" }
+                        }
+                    },
+                    new Culture
+                    {
+                        Name = "ru",
+                        Resources = new List<Resource>()
+                        {
+                            new Resource { Key = "ForJobseekers", Value = "Для соискателей" },
+                            new Resource { Key = "ForEmployers", Value = "Для работодателей" },
+                            new Resource { Key = "Services", Value =  "Сервисы" },
+                            new Resource { Key = "Blog", Value = "Блог" },
+                            new Resource { Key = "SignUp", Value = "Регистрация" },
+                            new Resource { Key = "Login", Value =  "Вход" },
+                            new Resource { Key = "StartNow", Value = "Начните строить свою карьеру сейчас!" },
+                            new Resource { Key = "KetWord", Value = "Ключевые слова" },
+                            new Resource { Key = "AllRegions", Value =  "Все регионы" },
+                            new Resource { Key = "WeOffer", Value = "Мы предлагаем вам&nbsp;<a href='job-listing.html'>2,989 вакансий</a> прямо сейчас!" }
+                        }
+                    },
+                    new Culture
+                    {
+                        Name = "uz",
+                        Resources = new List<Resource>()
+                        {
+                            new Resource { Key = "ForJobseekers", Value = "Ish izlovchilarga" },
+                            new Resource { Key = "ForEmployers", Value = "Ish beruvchilarga" },
+                            new Resource { Key = "Services", Value =  "Xizmatlar" },
+                            new Resource { Key = "Blog", Value = "Blog" },
+                            new Resource { Key = "SignUp", Value = "Registratsiya" },
+                            new Resource { Key = "Login", Value =  "Kirish" },
+                            new Resource { Key = "StartNow", Value = "Shaxsiy karyerangizni qurishni hoziroq boshlang!" },
+                            new Resource { Key = "KetWord", Value = "Kalit so'z" },
+                            new Resource { Key = "AllRegions", Value =  "Barcha viloyatlar" },
+                            new Resource { Key = "WeOffer", Value = "Biz sizga&nbsp;<a href='job-listing.html'>2,989 ish o'rinlarini</a> taklif qilamiz!" }
+                        }
+                    }
+                };
+                _cultureRepo.AddRange(cultures);
+            }
+            #endregion
         }
-
         private List<T> GetList<T>(string path) where T : class
         {
             string str = File.ReadAllText(path, Encoding.UTF8);

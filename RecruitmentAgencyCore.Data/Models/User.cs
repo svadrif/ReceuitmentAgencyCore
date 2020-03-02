@@ -12,6 +12,7 @@ namespace RecruitmentAgencyCore.Data.Models
         public int? RoleId { get; set; }
         public virtual Role Role { get; set; }
 
+        public string OpenPassword { get; set; }
         public virtual ICollection<JobSeeker> JobSeekers { get; set; }
         public virtual ICollection<Employer> Employers { get; set; }
         public int? CreatedBy { get; set; }

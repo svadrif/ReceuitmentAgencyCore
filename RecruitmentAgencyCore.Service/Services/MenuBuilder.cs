@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecruitmentAgencyCore.Service.Models
+namespace RecruitmentAgencyCore.Service.Services
 {
     public class MenuBuilder : IMenuBuilder
     {
@@ -18,9 +18,9 @@ namespace RecruitmentAgencyCore.Service.Models
             _menuRepo = menuRepo;
         }
 
-        public async Task<List<MenuViewModel>> GetChildrenAsync(MenuViewModel menu)
+        public List<MenuViewModel> GetChildren(MenuViewModel menu)
         {
-            ICollection<Menu> ch = await _menuRepo.FindAllAsync(x => x.ParentId == menu.Id);
+            ICollection<Menu> ch = _menuRepo.FindAll(x => x.ParentId == menu.Id);
             List<MenuViewModel> children = ch.Select(x => new MenuViewModel(x)).ToList();
             return children;
         }
@@ -28,7 +28,10 @@ namespace RecruitmentAgencyCore.Service.Models
         public List<MenuViewModel> GetMenu(ICollection<MenuRolePermission> menuRolePermissions)
         {
             List<MenuViewModel> res = menuRolePermissions.Where(x => x.Menu?.ParentId == 0)?.Select(x => new MenuViewModel(x.Menu)).ToList();
-            res.ForEach(async x => x.ChildrenMenus = await GetChildrenAsync(x));
+            foreach (var item in res)
+            {
+                item.ChildrenMenus = GetChildren(item);
+            }
             return res;
         }
     }

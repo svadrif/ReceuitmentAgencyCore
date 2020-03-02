@@ -9,6 +9,8 @@ namespace RecruitmentAgencyCore.Data.Mappings
         public void Configure(EntityTypeBuilder<Country> builder)
         {
             builder.HasKey(c => c.Id);
+
+
         }
     }
 }

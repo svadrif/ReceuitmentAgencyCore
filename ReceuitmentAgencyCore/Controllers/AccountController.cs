@@ -12,15 +12,17 @@ using RecruitmentAgencyCore.Data.Repository;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Service.Interfaces;
 using RecruitmentAgencyCore.Data.ViewModels;
-using RecruitmentAgencyCore.Service.Services;
 using Microsoft.AspNetCore.Identity;
+using RecruitmentAgencyCore.Helpers;
+using RecruitmentAgencyCore.Service.Services;
 
 namespace RecruitmentAgencyCore.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly RecruitmentAgencySignInManager _signInManager;
         private readonly RecruitmentAgencyUserManager _userManager;
+        private readonly RouteHelper _routeHelper;
 
         private readonly ILogger<AccountController> _logger;
         private readonly IGenericRepository<User> _userRepository;
@@ -29,7 +31,8 @@ namespace RecruitmentAgencyCore.Controllers
 
         public AccountController(ILogger<AccountController> logger, RecruitmentAgencyUserManager userManager,
             RecruitmentAgencySignInManager signInManager, IGenericRepository<User> userRepository,
-            IGenericRepository<MenuRolePermission> menuRolePermissionRepository, IMenuBuilder menuBuilder)
+            IGenericRepository<MenuRolePermission> menuRolePermissionRepository, IMenuBuilder menuBuilder,
+            RouteHelper routeHelper, IGenericRepository<Logging> loggingRepo) : base(userRepository, loggingRepo)
         {
             _logger = logger;
             _signInManager = signInManager;
@@ -37,10 +40,7 @@ namespace RecruitmentAgencyCore.Controllers
             _menuRolePermissionRepository = menuRolePermissionRepository;
             _menuBuilder = menuBuilder;
             _userManager = userManager;
-        }
-        public IActionResult Index()
-        {
-            return View();
+            _routeHelper = routeHelper;
         }
 
         public IActionResult Register()
@@ -65,6 +65,13 @@ namespace RecruitmentAgencyCore.Controllers
                         UserName = register.Email,
                         Email = register.Email,
                         PhoneNumber = register.PhoneNumber,
+                        OpenPassword = register.Password,
+                        CreatedDate = DateTime.Now,
+                        IsOnline = true,
+                        NormalizedUserName = register.Email.ToLower(),
+                        NormalizedEmail = register.Email.ToLower(),
+                        EmailConfirmed = true,
+                        PhoneNumberConfirmed = true,
                         RoleId = register.RoleId,
                         IsActive = true
                     };
@@ -73,10 +80,13 @@ namespace RecruitmentAgencyCore.Controllers
                     {
                         throw new InvalidOperationException("Failed to create new user");
                     }
+                    if (register.RoleId == 2) return RedirectToAction("Register", "Employer", new { email = register.Email });
+                    return RedirectToAction("Register", "JobSeeker", new { email = register.Email });
                 }
+                ModelState.AddModelError(string.Empty, "Failed to create new user");
             }
-            ModelState.AddModelError(string.Empty, "Failed to create new user");
-            return View();
+            ModelState.AddModelError(string.Empty, "This email already exists");
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Login()
@@ -87,8 +97,6 @@ namespace RecruitmentAgencyCore.Controllers
             }
 
             return View();
-
-
         }
         [HttpPost]
         [AllowAnonymous]
@@ -112,28 +120,63 @@ namespace RecruitmentAgencyCore.Controllers
             }
             _logger.Log(LogLevel.Error, "User not found");
             ModelState.AddModelError(string.Empty, "Failed to login");
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    return View("ForgotPasswordConfirmation");
+                }
+                string code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                string callbackUrl = Url.Action("Reset", "Account", (userId: user.Id, code), protocol: HttpContext.Request.Scheme);
+
+                EmailService emailService = new EmailService();
+                await emailService.SendEmailAsync(model.Email, "Reset password", $"Для сброса пароля пройдите по ссылке" +
+                      $": <a href='{callbackUrl}'>link</a>");
+                return View("ForgotPasswordConfirmation");
+            }
             return View(model);
         }
 
+
+
         public async Task<RedirectToActionResult> DefineRoleAndRedirectToAction(string email)
         {
-            if (!string.IsNullOrEmpty(email))
+            try
             {
-                User user = await _userRepository.FindAsync(x => x.Email == email);
-                ICollection<MenuRolePermission> menuRolePermissions = _menuRolePermissionRepository.GetAllIncluding(r => r.Role, p => p.Permission, m => m.Menu).ToList().FindAll(x => x.RoleId == user.RoleId);
-                MenuService.GetMenuViewModels = _menuBuilder.GetMenu(menuRolePermissions);
-                MenuViewModel menu = MenuService.GetMenuViewModels?.FirstOrDefault();
-                return RedirectToAction(menu?.Action, menu?.Controller);
+                if (!string.IsNullOrEmpty(email))
+                {
+                    MenuViewModel menu = await _routeHelper.GetMenuByEmail(email);
+                    return RedirectToAction(menu?.Action, menu?.Controller);
+                }
             }
-            await _signInManager.SignOutAsync();
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                await _signInManager.SignOutAsync();            
+            }
             return RedirectToAction("Login");
-          
         }
 
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            MenuService.GetMenuViewModels = null;
+            _routeHelper.DestroyCurrentUser();            
             return RedirectToAction("Index", "Home");
         }
     }

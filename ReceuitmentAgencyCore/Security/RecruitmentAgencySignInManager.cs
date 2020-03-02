@@ -33,18 +33,36 @@ namespace RecruitmentAgencyCore.Security
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _contextAccessor = contextAccessor ?? throw new ArgumentNullException(nameof(contextAccessor));
             _db = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+
         }
 
         public override async Task<SignInResult> PasswordSignInAsync(string userName, string password, bool rememberMe, bool shouldLockout)
         {
-            User user = _userManager.FindByEmailAsync(userName).Result;
-            user.LastLoginTime = DateTime.Now;
-            await _db.SaveChangesAsync();
+            User user = await _userManager.FindByEmailAsync(userName);
+            if (user != null)
+            {
+                user.LastLoginTime = DateTime.Now;
+                user.IsOnline = true;
+                await _db.SaveChangesAsync();
+            }
+           
             return await base.PasswordSignInAsync(userName, password, rememberMe, shouldLockout);
         }
         public override Task SignInWithClaimsAsync(User user, AuthenticationProperties authenticationProperties, IEnumerable<Claim> additionalClaims)
         {
             return base.SignInWithClaimsAsync(user, authenticationProperties, additionalClaims);
+        }
+
+        public override async Task SignOutAsync()
+        {
+            User user = await _userManager.FindByEmailAsync(_contextAccessor?.HttpContext?.User?.Identity?.Name);
+            if (user != null)
+            {
+                user.IsOnline = false;
+                await _db.SaveChangesAsync();
+            }
+           
+            await base.SignOutAsync();
         }
     }
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
@@ -26,6 +27,10 @@
   <ItemGroup>
     <ProjectReference Include="..\RecruitmentAgencyCore.Data\RecruitmentAgencyCore.Data.csproj" />
     <ProjectReference Include="..\RecruitmentAgencyCore.Service\RecruitmentAgencyCore.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
 

@@ -1,9 +1,9 @@
-{
+п»ї{
   "JsonData": [
     {
       "Id": "0",
       "NameUz": "Boshlang'ich",
-      "NameRu": "Начальный",
+      "NameRu": "РќР°С‡Р°Р»СЊРЅС‹Р№",
       "NameEn": "Beginner",
       "Level": "A1",
       "CreatedBy": "1",
@@ -14,7 +14,7 @@
     {
       "Id": "0",
       "NameUz": "Elementar",
-      "NameRu": "Элементарный",
+      "NameRu": "Р­Р»РµРјРµРЅС‚Р°СЂРЅС‹Р№",
       "NameEn": "Elementary",
       "Level": "A2",
       "CreatedBy": "1",
@@ -25,7 +25,7 @@
     {
       "Id": "0",
       "NameUz": "O'rtacha",
-      "NameRu": "Средний",
+      "NameRu": "РџСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Р№",
       "NameEn": "Intermediate",
       "Level": "B1",
       "CreatedBy": "1",
@@ -36,7 +36,7 @@
     {
       "Id": "0",
       "NameUz": "O'rtachadan yuqori daraja",
-      "NameRu": "Выше среднего",
+      "NameRu": "Р’С‹С€Рµ СЃСЂРµРґРЅРµРіРѕ",
       "NameEn": "Upper Intermediate",
       "Level": "B2",
       "CreatedBy": "1",
@@ -47,7 +47,7 @@
     {
       "Id": "0",
       "NameUz": "A'lo darajada",
-      "NameRu": "Продвинутый",
+      "NameRu": "РћС‚Р»РёС‡РЅРѕ",
       "NameEn": "Advanced",
       "Level": "C1",
       "CreatedBy": "1",
@@ -58,7 +58,7 @@
     {
       "Id": "0",
       "NameUz": "Mukammal darajada",
-      "NameRu": "В совершенстве",
+      "NameRu": "Р’ СЃРѕРІРµСЂС€РµРЅСЃС‚РІРµ",
       "NameEn": "Mastery",
       "Level": "C2",
       "CreatedBy": "1",

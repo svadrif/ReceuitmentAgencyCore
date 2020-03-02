@@ -276,7 +276,7 @@ section {
 .page-wrapper {
     overflow: hidden;
     background: #e5e5e5;
-    padding-bottom: 8vh;
+    /*padding-bottom: 8vh;*/
 }
 
 @media (max-width: 991px) {
@@ -488,12 +488,12 @@ section {
 }
 
 .au-btn--green {
-    background: #63c76a;
+    background: #4272d7;
 }
 
-.au-btn--green:hover {
-    background: #59bd60;
-}
+    .au-btn--green:hover {
+        background: #3c47c9;
+    }
 
 .au-btn-plus {
     position: absolute;
@@ -4741,7 +4741,7 @@ section {
 /* ----- Footer ----- */
 .copyright {
     text-align: center;
-    padding: 60px 0;
+    padding: 10px 0;
     padding-top: 20px;
 }
 

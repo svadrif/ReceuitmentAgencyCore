@@ -10,6 +10,6 @@ namespace RecruitmentAgencyCore.Service.Interfaces
     public interface IMenuBuilder
     {
         public List<MenuViewModel> GetMenu(ICollection<MenuRolePermission> menuRolePermissions);
-        public Task<List<MenuViewModel>> GetChildrenAsync(MenuViewModel menu);
+        public List<MenuViewModel> GetChildren(MenuViewModel menu);
     }
 }

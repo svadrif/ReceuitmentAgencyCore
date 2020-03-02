@@ -7,6 +7,7 @@ namespace RecruitmentAgencyCore.Data.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Photo { get; set; } // картинка вакансии, не обязательно
         public string Description { get; set; }
         public string Requirements { get; set; } // Требования
         public string Responsibility { get; set; } // Обязанности

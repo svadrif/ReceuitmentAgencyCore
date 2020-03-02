@@ -10,97 +10,98 @@ namespace RecruitmentAgencyCore.Data.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public AppDbContext _ctx { get; }
+        private AppDbContext Ctx { get; }
         public GenericRepository(AppDbContext ctx)
         {
-            _ctx = ctx;
+            Ctx = ctx;
         }
+
         public IQueryable<T> GetAll()
         {
-            return _ctx.Set<T>();
+            return Ctx.Set<T>();
         }
         public virtual async Task<ICollection<T>> GetAllAsyn()
         {
-            return await _ctx.Set<T>().ToListAsync();
+            return await Ctx.Set<T>().ToListAsync();
         }
         public virtual T Get(int id)
         {
-            return _ctx.Set<T>().Find(id);
+            return Ctx.Set<T>().Find(id);
         }
 
         public virtual async Task<T> GetAsync(int id)
         {
-            return await _ctx.Set<T>().FindAsync(id);
+            return await Ctx.Set<T>().FindAsync(id);
         }
 
         public virtual T Add(T t)
         {
-            _ctx.Set<T>().Add(t);
-            _ctx.SaveChanges();
+            Ctx.Set<T>().Add(t);
+            Ctx.SaveChanges();
             return t;
         }
         public virtual ICollection<T> AddRange(ICollection<T> t)
         {
-            _ctx.Set<T>().AddRange(t);
-            _ctx.SaveChanges();
+            Ctx.Set<T>().AddRange(t);
+            Ctx.SaveChanges();
             return t;
         }
 
         public virtual async Task<T> AddAsyn(T t)
         {
-            _ctx.Set<T>().Add(t);
-            await _ctx.SaveChangesAsync();
+            Ctx.Set<T>().Add(t);
+            await Ctx.SaveChangesAsync();
             return t;
 
         }
 
         public virtual T Find(Expression<Func<T, bool>> match)
         {
-            return _ctx.Set<T>().SingleOrDefault(match);
+            return Ctx.Set<T>().SingleOrDefault(match);
         }
 
         public virtual async Task<T> FindAsync(Expression<Func<T, bool>> match)
         {
-            return await _ctx.Set<T>().SingleOrDefaultAsync(match);
+            return await Ctx.Set<T>().SingleOrDefaultAsync(match);
         }
 
         public ICollection<T> FindAll(Expression<Func<T, bool>> match)
         {
-            return _ctx.Set<T>().Where(match).ToList();
+            return Ctx.Set<T>().Where(match).ToList();
         }
 
         public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)
         {
-            return await _ctx.Set<T>().Where(match).ToListAsync();
+            return await Ctx.Set<T>().Where(match).ToListAsync();
         }
 
         public virtual void Delete(T entity)
         {
-            _ctx.Set<T>().Remove(entity);
-            _ctx.SaveChanges();
+            Ctx.Set<T>().Remove(entity);
+            Ctx.SaveChanges();
         }
 
         public virtual void DeleteRange(List<T> entity)
         {
-            _ctx.Set<T>().RemoveRange(entity);
-            _ctx.SaveChanges();
+            Ctx.Set<T>().RemoveRange(entity);
+            Ctx.SaveChanges();
         }
 
         public virtual async Task<int> DeleteAsyn(T entity)
         {
-            _ctx.Set<T>().Remove(entity);
-            return await _ctx.SaveChangesAsync();
+            Ctx.Set<T>().Remove(entity);
+            return await Ctx.SaveChangesAsync();
         }
 
         public virtual T Update(T t, object key)
         {
             if (t == null)
                 return null;
-            T exist = _ctx.Set<T>().Find(key);
+            T exist = Ctx.Set<T>().Find(key);
             if (exist != null)
             {
-                _ctx.Entry(exist).CurrentValues.SetValues(t);
-                _ctx.SaveChanges();
+                Ctx.Entry(exist).CurrentValues.SetValues(t);
+                Ctx.SaveChanges();
             }
             return exist;
         }
@@ -109,51 +110,51 @@ namespace RecruitmentAgencyCore.Data.Repository
         {
             if (t == null)
                 return null;
-            T exist = await _ctx.Set<T>().FindAsync(key);
+            T exist = await Ctx.Set<T>().FindAsync(key);
             if (exist != null)
             {
-                _ctx.Entry(exist).CurrentValues.SetValues(t);
-                await _ctx.SaveChangesAsync();
+                Ctx.Entry(exist).CurrentValues.SetValues(t);
+                await Ctx.SaveChangesAsync();
             }
             return exist;
         }
 
         public int Count()
         {
-            return _ctx.Set<T>().Count();
+            return Ctx.Set<T>().Count();
         }
 
         public async Task<int> CountAsync()
         {
-            return await _ctx.Set<T>().CountAsync();
+            return await Ctx.Set<T>().CountAsync();
         }
 
         public virtual void Save()
         {
 
-            _ctx.SaveChanges();
+            Ctx.SaveChanges();
         }
 
         public async virtual Task<int> SaveAsync()
         {
-            return await _ctx.SaveChangesAsync();
+            return await Ctx.SaveChangesAsync();
         }
 
         public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
-            IQueryable<T> query = _ctx.Set<T>().Where(predicate);
+            IQueryable<T> query = Ctx.Set<T>().Where(predicate);
             return query;
         }
 
         public virtual IQueryable<T> FindAllBy(Expression<Func<T, bool>> predicate)
         {
-            IQueryable<T> query = _ctx.Set<T>().Where(predicate);
+            IQueryable<T> query = Ctx.Set<T>().Where(predicate);
             return query;
         }
 
         public virtual async Task<ICollection<T>> FindByAsyn(Expression<Func<T, bool>> predicate)
         {
-            return await _ctx.Set<T>().Where(predicate).ToListAsync();
+            return await Ctx.Set<T>().Where(predicate).ToListAsync();
         }
 
         public IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
@@ -173,7 +174,7 @@ namespace RecruitmentAgencyCore.Data.Repository
             {
                 if (disposing)
                 {
-                    _ctx.Dispose();
+                    Ctx.Dispose();
                 }
                 this.disposed = true;
             }

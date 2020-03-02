@@ -1,9 +1,9 @@
-{
+п»ї{
   "JsonData": [
     {
       "Id": "0",
       "NameUz": "O'rta",
-      "NameRu": "Среднее",
+      "NameRu": "РЎСЂРµРґРЅРµРµ",
       "NameEn": "Secondary",
       "CreatedBy": "1",
       "CreatedDate": "",
@@ -13,7 +13,7 @@
     {
       "Id": "0",
       "NameUz": "O'rta maxsus",
-      "NameRu": "Среднее специальное",
+      "NameRu": "РЎСЂРµРґРЅРµРµ СЃРїРµС†РёР°Р»СЊРЅРѕРµ",
       "NameEn": "Secondary special",
       "CreatedBy": "1",
       "CreatedDate": "",
@@ -23,7 +23,7 @@
     {
       "Id": "0",
       "NameUz": "Bakalavriat",
-      "NameRu": "Бакалавриат",
+      "NameRu": "Р‘Р°РєР°Р»Р°РІСЂРёР°С‚",
       "NameEn": "Bachelor's degree",
       "CreatedBy": "1",
       "CreatedDate": "",
@@ -33,7 +33,7 @@
     {
       "Id": "0",
       "NameUz": "Magistratura",
-      "NameRu": "Магистратура",
+      "NameRu": "РњР°РіРёСЃС‚СЂР°С‚СѓСЂР°",
       "NameEn": "Master's degree",
       "CreatedBy": "1",
       "CreatedDate": "",
@@ -43,7 +43,7 @@
     {
       "Id": "0",
       "NameUz": "Fan nomzodi",
-      "NameRu": "Кандидат наук",
+      "NameRu": "РљР°РЅРґРёРґР°С‚ РЅР°СѓРє",
       "NameEn": "PhD",
       "CreatedBy": "1",
       "CreatedDate": "",
@@ -53,7 +53,7 @@
     {
       "Id": "0",
       "NameUz": "Fan doktori",
-      "NameRu": "Доктор наук",
+      "NameRu": "Р”РѕРєС‚РѕСЂ РЅР°СѓРє",
       "NameEn": "DSc",
       "CreatedBy": "1",
       "CreatedDate": "",

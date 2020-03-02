@@ -20,7 +20,7 @@ namespace RecruitmentAgencyCore.Security
            
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
-            var _user = await _db.Users.FirstOrDefaultAsync(t => t.Email == user.Email);
+            User _user = await _db.Users.FirstOrDefaultAsync(t => t.Email == user.Email);
 
             return IdentityResult.Success;
         }
@@ -40,19 +40,19 @@ namespace RecruitmentAgencyCore.Security
             return await _db.Users.FirstOrDefaultAsync(t => t.Email.ToUpper() == normalizedUserName);
         }
 
-        Task<string> IUserStore<User>.GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
+        async Task<string> IUserStore<User>.GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(user.NormalizedUserName);
         }
 
-        Task<string> IUserPasswordStore<User>.GetPasswordHashAsync(User user, CancellationToken cancellationToken)
+        async Task<string> IUserPasswordStore<User>.GetPasswordHashAsync(User user, CancellationToken cancellationToken)
         {
-            return Task.FromResult<string>(user.PasswordHash);
+            return await Task.FromResult(user.PasswordHash);
         }
 
-        Task<string> IUserStore<User>.GetUserIdAsync(User user, CancellationToken cancellationToken)
+        async Task<string> IUserStore<User>.GetUserIdAsync(User user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.Id);
+            return await Task.FromResult(user.Id);
         }
 
         async Task<string> IUserStore<User>.GetUserNameAsync(User user, CancellationToken cancellationToken)

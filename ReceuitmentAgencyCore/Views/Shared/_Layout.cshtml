@@ -1,294 +1,392 @@
-﻿<!doctype html>
-<html class="no-js" lang="">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kadr agentligi</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+﻿@using Microsoft.Extensions.Localization
 
-    <link rel="shortcut icon" type="image/png" href="~/images/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
-    <!-- all css here -->
-    <!-- bootstrap v3.3.7 css -->
-    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- animate css -->
-    <link rel="stylesheet" href="~/css/animate.css">
-    <!-- owl.carousel.2.0.0-beta.2.4 css -->
-    <link rel="stylesheet" href="~/css/owl.carousel.css">
-    <!-- font-awesome v4.6.3 css -->
-    <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <!-- magnific-popup.css -->
-    <link rel="stylesheet" href="~/css/magnific-popup.css">
-    <!-- slicknav.min.css -->
-    <link rel="stylesheet" href="~/css/slicknav.min.css">
-    <!-- style css -->
-    <link rel="stylesheet" href="~/css/styles.css">
-    <!-- responsive css -->
-    <link rel="stylesheet" href="~/css/responsive.css">
-    <!-- modernizr css -->
-    <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+@inject IStringLocalizer T
+
+<html class="wide desktop landscape rd-navbar-static-linked" lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+
+    <link rel="icon" href="~/HomeAssets/images/favicon.ico" type="image/x-icon">
+
+    <link href="~/HomeAssets/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/HomeAssets/css/fonts.css">
+    <link rel="stylesheet" href="~/HomeAssets/css/style.css">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/LoginAssets/css/main.css">
+
 </head>
-<body>
-    <div id="cssLoader3" class="preloder-wrap">
-        <div class="loader">
-            <div class="child-common child4"></div>
-            <div class="child-common child3"></div>
-            <div class="child-common child2"></div>
-            <div class="child-common child1"></div>
-        </div>
-    </div>
-    <!-- preloder-wrap -->
-    <!-- search-area -->
-    <div class="search-area">
-        <span class="closs-btn">Close</span>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="search-form">
-                        <form action="#">
-                            <input type="text" name="search" placeholder="Search Here">
-                            <button type="button" name="button" class="btn-style">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- search-area -->
-    <!-- heared area start -->
-    <header class="header-area" id="sticky-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 col-sm-6 col-xs-4">
-                    <div class="logo">
-                        <h1><a href="index.html">Mallamo</a></h1>
-                    </div>
-                </div>
-                <div class="col-md-9 hidden-sm hidden-xs">
-                    <div class="mainmenu">
-                        <ul id="navigation">
-                            <li class="active">
-                                <a href="index.html">Home <i class="fa fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="index.html">Home One</a></li>
-                                    <li class="active"><a href="index2.html">Home Two</a></li>
-                                    <li><a href="index3.html">Home Three</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="about.html">About <i class="fa fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="about.html">about One</a></li>
-                                    <li><a href="about2.html">about Two</a></li>
-                                    <li><a href="about3.html">about Three</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="service.html">Service <i class="fa fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="service.html">service One</a></li>
-                                    <li><a href="service2.html">service Two</a></li>
-                                    <li><a href="single-service.html">service Single</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="team.html">team <i class="fa fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="team.html">team One</a></li>
-                                    <li>
-                                        <a href="team2.html">team Two <span class="pull-right">+</span></a>
-                                        <ul class="submenu">
-                                            <li><a href="#">Sabmenu One</a></li>
-                                            <li><a href="#">Sabmenu Two</a></li>
-                                            <li>
-                                                <a href="#">Sabmenu Three <span class="pull-right">+</span></a>
-                                                <ul class="submenu">
-                                                    <li><a href="#">Sabmenu One</a></li>
-                                                    <li><a href="#">Sabmenu Two</a></li>
-                                                    <li><a href="#">Sabmenu Three</a></li>
-                                                    <li><a href="#">Sabmenu Four</a></li>
-                                                    <li><a href="#">Sabmenu Five</a></li>
+<body class="">
+
+    <div class="page animated" style="animation-duration: 500ms;">
+        <!-- Page Header-->
+        <header class="section page-header jumbotron-creative">
+            <!-- RD Navbar-->
+            <div class="rd-navbar-wrap" style="height: 110px;">
+                <nav class="rd-navbar rd-navbar-classic rd-navbar-original rd-navbar-static rd-navbar--is-stuck" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+                    <div class="rd-navbar-main-outer">
+                        <div class="rd-navbar-main">
+                            <!-- RD Navbar Panel-->
+                            <div class="rd-navbar-panel">
+                                <!-- RD Navbar Toggle-->
+                                <button class="rd-navbar-toggle toggle-original" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                                <!-- RD Navbar Brand-->
+                                <div class="rd-navbar-brand">
+                                    <!--Brand-->
+                                    <a class="brand" href="index.html">
+                                        <img class="brand-logo-dark" src="~/HomeAssets/images/logo-default-286x52.png" alt="" width="143" height="26">
+                                        <img class="brand-logo-light" src="~/HomeAssets/images/logo-inverse-286x52.png" alt="" width="143" height="26">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="rd-navbar-main-element">
+                                <div class="rd-navbar-nav-wrap toggle-original-elements">
+                                    <ul class="rd-navbar-nav">
+                                        <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                            <a class="rd-nav-link" href="#">@T["ForJobseekers"]</a>
+
+                                            <ul class="rd-menu rd-navbar-dropdown">
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="job-listing.html">Job Listing</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="job-listing-full.html">Job Listing Full</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="companies.html">Companies</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="companies-page.html">Companies Page</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="job-details.html">Job Details</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="submit-resume.html">Submit Resume</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                            <a class="rd-nav-link" href="#">@T["ForEmployers"]</a>
+
+                                            <ul class="rd-menu rd-navbar-dropdown">
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="post-a-job.html">Post a Job</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="candidates.html">Candidates</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="candidates-grid.html">Candidates Grid</a>
+                                                </li>
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="resume-page.html">Resume Page</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="rd-nav-item rd-navbar--has-megamenu rd-navbar-submenu">
+                                            <a class="rd-nav-link" href="#">@T["Services"]</a>
+                                            <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right">
+                                                <li class="rd-megamenu-item">
+                                                    <h6 class="rd-megamenu-title"><a href="pages-1.html">Pages 1</a></h6>
+                                                    <ul class="rd-megamenu-list">
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="about-us.html">About Us</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="contact-us.html">Contact Us</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="faq.html">FAQ</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="pricing-tables.html">Pricing Tables</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="testimonials.html">Testimonials</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="rd-megamenu-item">
+                                                    <h6 class="rd-megamenu-title"><a href="pages-2.html">Pages 2</a></h6>
+                                                    <ul class="rd-megamenu-list">
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="coming-soon.html">Coming Soon</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="maintenance.html">Maintenance</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="404.html">404</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="503.html">503</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="privacy-policy.html">Privacy Policy</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="search-results.html">Search results</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="rd-megamenu-item">
+                                                    <h6 class="rd-megamenu-title"><a href="elements.html">Elements</a></h6>
+                                                    <ul class="rd-megamenu-list">
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="typography.html">Typography</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="forms.html">Forms</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="buttons.html">Buttons</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="progress-bars.html">Progress Bars</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tabs-and-accordions.html">Tabs and Accordions</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tables.html">Tables</a></li>
+                                                        <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="grid-system.html">Grid system</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                            <a class="rd-nav-link" href="blog.html">@T["Blog"]</a>
+                                            <ul class="rd-menu rd-navbar-dropdown">
+                                                <li class="rd-dropdown-item">
+                                                    <a class="rd-dropdown-link" href="blog-post.html">Blog post</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @*<div class="rd-navbar-aside">
+                                <div class="rd-navbar-aside-item">
+                                    <button class="button button-xs button-primary-outline button-icon button-icon-left rd-navbar-popup-toggle toggle-original" data-rd-navbar-toggle="#rd-navbar-register"><span class="icon mdi mdi-account"></span>Sign Up</button>
+                                    <div class="rd-navbar-popup bg-gray-100 toggle-original-elements" id="rd-navbar-register">
+                                        <h5 class="rd-navbar-popup-title">Sign Up</h5>
+                                        <form class="rd-form rd-mailform form-compact" method="post" asp-controller="Account" asp-action="Register">
+                                            <div class="form-wrap">
+                                                <input class="form-input form-control-has-validation" type="email" name="Email" id="Email"><span class="form-validation"></span>
+                                                <label class="form-label rd-input-label" for="Email">Email</label>
+                                            </div>
+                                            <div class="form-wrap">
+                                                <input class="form-input form-control-has-validation" type="tel" name="PhoneNumber" id="PhoneNumber"><span class="form-validation"></span>
+                                                <label class="form-label rd-input-label" for="PhoneNumber">Phone number</label>
+                                            </div>
+                                            <div class="form-wrap">
+                                                <input class="form-input form-control-has-validation" type="password" name="Password" id="Password"><span class="form-validation"></span>
+                                                <label class="form-label rd-input-label" for="Password">Password</label>
+                                            </div>
+                                            <div class="form-wrap">
+                                                <input class="form-input form-control-has-validation" type="password" name="PasswordConfirm" id="PasswordConfirm"><span class="form-validation"></span>
+                                                <label class="form-label rd-input-label" for="PasswordConfirm">Confirm Password</label>
+                                            </div>
+                                            <div class="col-md-12 mb-4">
+                                                <div class="toggle">
+                                                    <input type="radio" name="RoleId" value="2" id="Employer">
+                                                    <label for="Employer">Employer</label>
+
+                                                    <input type="radio" name="RoleId" value="3" id="JobSeeker" checked>
+                                                    <label for="JobSeeker">JobSeeker</label>
+
+                                                    <div id="flap"><span class="content">productive</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-wrap">
+                                                <button class="button button-block button-primary" type="submit">Create an Account</button>
+                                            </div>
+                                            <div class="form-wrap form-wrap-ally">
+                                                <div class="text-decoration-lines rd-navbar-popup-title"><span class="text-decoration-lines-content">or enter with</span></div>
+                                            </div>
+                                            <div class="form-wrap form-wrap-ally">
+                                                <div class="button-group"><a class="button button-facebook button-icon button-icon-only button-winona" href="#" aria-label="Facebook"><span class="icon mdi mdi mdi-facebook"></span></a><a class="button button-twitter button-icon button-icon-only button-winona" href="#" aria-label="Twitter"><span class="icon mdi mdi-twitter"></span></a><a class="button button-google button-icon button-icon-only button-winona" href="#" aria-label="Google+"><span class="icon mdi mdi-google"></span></a></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>*@
+                            <div class="rd-navbar-aside">
+                                <div class="rd-navbar-aside-item">
+                                    <a role="button" href="/Account/Register/" class="button button-xs button-primary-outline button-icon button-icon-left rd-navbar-popup-toggle toggle-original"><span class="icon mdi mdi-account"></span>@T["SignUp"]</a>
+                                    <div class="rd-navbar-popup bg-gray-100 toggle-original-elements" id="rd-navbar-register">
+                                    </div>
+                                </div>
+                                <div class="rd-navbar-aside-item">
+                                    <button class="button button-xs button-primary button-icon button-icon-left rd-navbar-popup-toggle toggle-original" data-rd-navbar-toggle="#rd-navbar-login"><span class="icon mdi mdi-import"></span>@T["Login"]</button>
+                                    <div class="rd-navbar-popup bg-gray-100 toggle-original-elements" id="rd-navbar-login">
+                                        <h5 class="rd-navbar-popup-title">Login</h5>
+                                        <form class="rd-form form-compact" method="post" asp-controller="Account" asp-action="Login">
+                                            <div class="form-wrap">
+                                                <label for="Email">Email</label>
+                                                <input class="form-input form-control-has-validation" type="email" name="Email" id="Email"><span class="form-validation"></span>
+
+                                            </div>
+                                            <div class="form-wrap">
+                                                <label for="Password">Password</label>
+                                                <input class="form-input form-control-has-validation" type="password" name="Password" id="Password"><span class="form-validation"></span>
+
+                                            </div>
+
+                                            <div class="col-md-12 mb-4">
+                                                <div class="form-inline">
+                                                    <input type="checkbox" name="RememberMe" id="RememberMe">
+                                                    <label for="RememberMe">Remember me?</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-wrap">
+                                                <button class="button button-block button-primary" type="submit">@T["Login"]</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="rd-navbar-aside-item">
+                                    <div class="rd-navbar-nav-wrap toggle-original-elements">
+                                        <ul class="rd-navbar-nav">
+                                            <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                                <a class="rd-nav-link" href="#">@ViewBag.CurrentCulture</a>
+                                                <ul class="rd-menu rd-navbar-dropdown" style="width:60px !important; padding: 10px !important">
+                                                    @foreach (var item in ViewBag.Cultures)
+                                                    {
+                                                        if (item.Name.ToLower() != ViewBag.CurrentCulture.ToLower())
+                                                        {
+                                                            <li class="rd-dropdown-item">
+                                                                <a class="rd-dropdown-link" href="/Home/ChangeLanguage/?culture=@item.Name" id="@item.Name">@item.Name</a>
+                                                            </li>
+                                                        }
+                                                    }
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Sabmenu Four</a></li>
-                                            <li><a href="#">Sabmenu Five</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="team3.html">Team Three</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="portfolio.html">Portfolio <i class="fa fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="portfolio.html">Portfolio Page</a></li>
-                                    <li><a href="portfolio2.html">Portfolio Two</a></li>
-                                    <li><a href="portfolio3.html">Portfolio Two</a></li>
-                                    <li><a href="portfolio4.html">Portfolio Masonary</a></li>
-                                    <li><a href="portfolio5.html">Portfolio Masonary </a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="blog.html">Blog <i class="fa fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="blog.html">Blog page</a></li>
-                                    <li><a href="blog2.html">Blog Two column</a></li>
-                                    <li><a href="blog-left.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-right.html">Blog Right Sidebar</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                    <li><a href="blog-post.html">Blog Post </a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                                <ul class="megamenu">
-                                    <li>
-                                        <a class="mega-title" href="#">MegaMenu Title</a>
-                                        <ul>
-                                            <li><a href="about.html">About One</a></li>
-                                            <li><a href="about2.html">About Two</a></li>
-                                            <li><a href="service.html">service One</a></li>
-                                            <li><a href="service2.html">service Two</a></li>
-                                            <li><a href="single-service.html">service Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="mega-title" href="#">MegaMenu Title</a>
-                                        <ul>
-                                            <li><a href="faq.html">Faq Page</a></li>
-                                            <li><a href="skill.html">Skill Page</a></li>
-                                            <li><a href="pricing.html">Pricing Table</a></li>
-                                            <li><a href="pricing2.html">Pricing Two</a></li>
-                                            <li><a href="pricing3.html">Pricing Three</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="mega-title" href="#">MegaMenu Title</a>
-                                        <ul>
-                                            <li><a href="testmonial.html">Testmonial One</a></li>
-                                            <li><a href="team.html">Team page</a></li>
-                                            <li><a href="commingsoon.html">Comming Soon</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="/Account/Login">Sign In</a></li>
-                            <li><a href="/Account/Register">Register</a></li>
-                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-1 col-sm-2 col-xs-3">
-                    <div class="search-wrap text-right">
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2 clear col-xs-3 hidden-md hidden-lg">
-                    <div class="responsive-menu-wrap floatright"></div>
-                </div>
+                </nav>
             </div>
-        </div>
-    </header>
-    <!-- heared area end -->
-    @RenderBody()
-    <!-- footer-area start  -->
-    <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12  col wow fadeInUp" data-wow-delay=".1s">
-                        <div class="footer-widget footer-logo">
-                            <h1>Martxa</h1>
-                            <p>Lor separat existentie es un myth. Por scientie, musica, sport etc, litot  usa li sam larLor separat existentie es un myth existentie.</p>
-                            <ul>
-                                <li><i class="fa fa-phone"></i> +455 5475 6645</li>
-                                <li><i class="fa fa-envelope"></i> info@yourdomail.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 col wow fadeInUp" data-wow-delay=".2s">
-                        <div class="footer-widget footer-menu">
-                            <h2>Footer Menu</h2>
-                            <ul>
-                                <li><a href="faq.html">Faq</a></li>
-                                <li><a href="about.html">About us</a></li>
-                                <li><a href="#">Customer Insights</a></li>
-                                <li><a href="service.html">FInancial Service</a></li>
-                                <li><a href="#">Business Devlopment</a></li>
-                                <li><a href="">Project Management</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 col wow fadeInUp" data-wow-delay=".3s">
-                        <div class="footer-widget instagram-wrap">
-                            <h2>Instagram</h2>
-                            <ul>
-                                <li><a href="#"><img src="~/images/instagram/1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="~/images/instagram/2.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="~/images/instagram/3.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="~/images/instagram/4.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="~/images/instagram/5.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="~/images/instagram/6.jpg" alt=""></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 col wow fadeInUp" data-wow-delay=".4s">
-                        <div class="footer-widget quick-contact">
-                            <h2>Quick Contact</h2>
-                            <form action="#">
-                                <input type="text" placeholder="Full Name">
-                                <input type="email" placeholder="Email">
-                                <textarea name="massage" id="massage" cols="30" rows="10" placeholder="Massage"></textarea>
-                                <button type="button" name="button" class="btn-style">Send</button>
+            <div class="jumbotron-creative-inner">
+                <div class="container">
+                    <div class="jumbotron-creative-main">
+                        <h2 class="jumbotron-creative-title">@T["StartNow"]</h2>
+                        <div class="form-layout-search-outer">
+                            <form class="form-layout-search form-lg">
+                                <div class="form-wrap form-wrap-icon">
+                                    <input class="form-input form-control-has-validation" id="form-keywords" type="text" name="keywords">
+                                    <span class="form-validation"></span>
+                                    <label class="form-label rd-input-label" for="form-keywords">@T["KetWord"]</label>
+                                    <span class="icon fl-bigmug-line-circular224"></span>
+                                </div>
+                                <div class="form-wrap form-wrap-icon form-wrap-select">
+                                    <!-- Select 2-->
+                                    <select class="form-input select form-control-has-validation select2-hidden-accessible" id="form-region" data-placeholder="@T["AllRegions"]" name="region" data-minimum-results-for-search="Infinity" tabindex="-1" aria-hidden="true">
+                                        <option label="@T["AllRegions"]"></option>
+                                        <option value="1">Seattle</option>
+                                        <option value="2">Miami</option>
+                                        <option value="3">Chicago</option>
+                                    </select>
+
+                                    <span class="form-validation"></span>
+                                    <span class="icon fl-bigmug-line-big104"></span>
+                                </div>
+                                <div class="form-wrap form-wrap-button form-wrap-button-icon-only">
+                                    <button class="button button-lg button-primary button-icon-only" type="submit" aria-label="search"><span class="icon icon-4 fl-bigmug-line-search74"></span></button>
+                                </div>
                             </form>
                         </div>
+                        <p class="big text-gray-800">@Html.Raw(T["WeOffer"])</p>
                     </div>
                 </div>
+                <div class="jc-decoration">
+                    <div class="jc-decoration-item jc-decoration-item-1">
+                        <svg version="1.1" x="0px" y="0px" viewBox="0 0 1446 970" width="1446" height="970" preserveAspectRatio="none">
+                            <path d="M-0.000,33.000 C-0.000,33.000 80.000,54.000 113.000,83.000 C146.000,112.000 147.000,152.000 183.000,174.000 C219.000,196.000 288.000,172.000 334.000,193.000 C380.000,214.000 379.000,282.000 427.000,317.000 C475.000,352.000 548.000,336.000 588.000,371.000 C628.000,406.000 614.000,483.000 647.000,513.000 C680.000,543.000 786.000,537.000 841.000,587.000 C896.000,637.000 885.000,739.000 932.000,776.000 C979.000,813.000 1026.000,796.000 1069.000,817.000 C1112.000,838.000 1135.000,865.000 1189.000,893.000 C1243.000,921.000 1433.000,970.000 1433.000,970.000 L1446.000,0.000 L-0.000,33.000 Z"></path>
+                        </svg>
+                    </div>
+                    <div class="jc-decoration-item jc-decoration-item-2">
+                        <svg version="1.1" x="0px" y="0px" viewBox="0 0 1446 970" width="1446" height="970" preserveAspectRatio="none">
+                            <path d="M-0.000,33.000 C-0.000,33.000 80.000,54.000 113.000,83.000 C146.000,112.000 147.000,152.000 183.000,174.000 C219.000,196.000 288.000,172.000 334.000,193.000 C380.000,214.000 379.000,282.000 427.000,317.000 C475.000,352.000 548.000,336.000 588.000,371.000 C628.000,406.000 614.000,483.000 647.000,513.000 C680.000,543.000 786.000,537.000 841.000,587.000 C896.000,637.000 885.000,739.000 932.000,776.000 C979.000,813.000 1026.000,796.000 1069.000,817.000 C1112.000,838.000 1135.000,865.000 1189.000,893.000 C1243.000,921.000 1433.000,970.000 1433.000,970.000 L1446.000,0.000 L-0.000,33.000 Z"></path>
+                        </svg>
+                    </div><img class="jc-decoration-image" src="~/HomeAssets/images/home-1-748x528.png" alt="" width="748" height="528">
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom text-center">
+        </header>
+        <!-- Welcome to JobsFactory-->
+        @RenderBody()
+        <section class="section section-md bg-default text-center">
             <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | Recruitment agency
+                <h3>Get JobsFactory App for Your Mobile</h3>
+                <p class="offset-top-20px"><span style="max-width: 670px;">Searching for jobs has never been that easy. Now you can find job matched your career expectation, apply for jobs and receive feedback right on your mobile. Start your job search now!</span></p>
+                <div class="group"><a class="button button-primary button-fixed-size" href="#"><img src="~/HomeAssets/images/google-play-download-138x35.png" alt="" width="138" height="35"></a><a class="button button-primary button-fixed-size" href="#"><img src="~/HomeAssets/images/appstore.svg" alt=""></a></div>
+            </div>
+        </section>
+        <!-- Page Footer-->
+        <footer class="section footer-creative context-dark">
+            <div class="footer-creative-main">
+                <div class="container">
+                    <div class="row row-50 justify-content-lg-between">
+                        <div class="col-lg-5 col-xl-4">
+                            <p class="footer-creative-title">Quick Links</p>
+                            <div class="footer-creative-divider"></div>
+                            <div class="row row-narrow row-15">
+                                <div class="col-6">
+                                    <ul class="list-marked-1">
+                                        <li><a href="job-listing-full.html">Browse Jobs</a></li>
+                                        <li><a href="job-listing.html">Browse Categories</a></li>
+                                        <li><a href="submit-resume.html">Submit Resume</a></li>
+                                        <li><a href="companies.html">Companies</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <ul class="list-marked-1">
+                                        <li><a href="post-a-job.html">Post a Job</a></li>
+                                        <li><a href="candidates-grid.html">Find a Candidate</a></li>
+                                        <li><a href="pricing-tables.html">Pricing Table</a></li>
+                                        <li><a href="faq.html">FAQ </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <p class="footer-creative-title">Recent News posts</p>
+                            <div class="footer-creative-divider"></div>
+                            <div class="post-line-group">
+                                <!-- Post Line-->
+                                <a class="post-line" href="blog-post.html">
+                                    <time class="post-line-time" datetime="2019">
+                                        <span class="post-line-time-day">25</span>
+                                        <span class="post-line-time-month">April</span>
+                                    </time>
+                                    <p class="post-line-text">Canada adds 12,500 jobs in modest July rebound</p>
+                                </a>
+                                <!-- Post Line-->
+                                <a class="post-line" href="blog-post.html">
+                                    <time class="post-line-time" datetime="2019">
+                                        <span class="post-line-time-day">14</span>
+                                        <span class="post-line-time-month">April</span>
+                                    </time>
+                                    <p class="post-line-text">Outsourcing vs. In-House Digital Marketing</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <p class="footer-creative-title">Jobs in Popular cities</p>
+                            <div class="footer-creative-divider"></div>
+                            <div class="row row-narrow row-15">
+                                <div class="col-6">
+                                    <ul class="list list-1 list-icons">
+                                        <li><a href="job-listing-full.html"><span class="icon icon-sm mdi mdi-map-marker"></span><span>San Francisco</span></a></li>
+                                        <li><a href="job-listing-full.html"><span class="icon icon-sm mdi mdi-map-marker"></span><span>Washington</span></a></li>
+                                        <li><a href="job-listing-full.html"><span class="icon icon-sm mdi mdi-map-marker"></span><span>Sacramento</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <ul class="list list-1 list-icons">
+                                        <li><a href="job-listing-full.html"><span class="icon icon-sm mdi mdi-map-marker"></span><span>New York</span></a></li>
+                                        <li><a href="job-listing-full.html"><span class="icon icon-sm mdi mdi-map-marker"></span><span>Ontario</span></a></li>
+                                        <li><a href="job-listing-full.html"><span class="icon icon-sm mdi mdi-map-marker"></span><span>Chicago</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- footer-area end  -->
-    <!-- all js here -->
-    <!-- jquery latest version -->
-    <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- bootstrap js -->
-    <script src="~/js/bootstrap.min.js"></script>
-    <!-- owl.carousel.2.0.0-beta.2.4 css -->
-    <script src="~/js/owl.carousel.min.js"></script>
-    <!-- counterup.main.js -->
-    <script src="~/js/counterup.main.js"></script>
-    <!-- isotope.pkgd.min.js -->
-    <script src="~/js/imagesloaded.pkgd.min.js"></script>
-    <!-- isotope.pkgd.min.js -->
-    <script src="~/js/isotope.pkgd.min.js"></script>
-    <!-- jquery.waypoints.min.js -->
-    <script src="~/js/jquery.waypoints.min.js"></script>
-    <!-- jquery.magnific-popup.min.js -->
-    <script src="~/js/jquery.magnific-popup.min.js"></script>
-    <!-- jquery.slicknav.min.js -->
-    <script src="~/js/jquery.slicknav.min.js"></script>
-    <!-- snake.min.js -->
-    <script src="~/js/snake.min.js"></script>
-    <!-- wow js -->
-    <script src="~/js/wow.min.js"></script>
-    <!-- plugins js -->
-    <script src="~/js/plugins.js"></script>
-    <!-- main js -->
-    <script src="~/js/scripts.js"></script>
+            <div class="footer-creative-aside">
+                <div class="container">
+                    <p class="rights">
+                        <span>JobsFactory</span><span>&nbsp;©&nbsp;</span>
+                        <span class="copyright-year">2020</span><span>&nbsp;</span>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="~/HomeAssets/js/core.min.js"></script>
+    <script src="~/HomeAssets/js/script.js"></script>
+    <script src="~/LoginAssets/js/main.js"></script>
 </body>
 </html>
