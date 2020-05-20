@@ -58,7 +58,11 @@ namespace RecruitmentAgencyCore.Helpers
         {
             if (user.RoleId == 3)
             {
-                JobSeeker jobseeker = _jobSeekerRepository.GetAllIncluding(u => u.User, c => c.Country, r => r.Region, d => d.District).ToList().Find(x => x.UserId == user.UserId);
+                JobSeeker jobseeker = _jobSeekerRepository
+                    .GetAllIncluding(u => u.User, c => c.Country, r => r.Region, d => d.District)
+                    .ToList()
+                    .Find(x => x.UserId == user.UserId);
+
                 if (jobseeker != null)
                 {
                     UserModel.JobSeeker = new JobSeekerViewModel(jobseeker);
@@ -66,7 +70,11 @@ namespace RecruitmentAgencyCore.Helpers
             }
             else if (user.RoleId == 2)
             {
-                Employer employer = _employerRepository.GetAllIncluding(u => u.User, c => c.Country, r => r.Region, d => d.District).ToList().Find(x => x.UserId == user.UserId);
+                Employer employer = _employerRepository
+                    .GetAllIncluding(u => u.User, c => c.Country, r => r.Region, d => d.District)
+                    .ToList()
+                    .Find(x => x.UserId == user.UserId);
+
                 if (employer != null)
                 {
                     UserModel.Employer = new EmployerViewModel(employer);
