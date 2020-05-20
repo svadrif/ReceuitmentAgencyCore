@@ -131,7 +131,6 @@ namespace RecruitmentAgencyCore.Data.Repository
 
         public virtual void Save()
         {
-
             Ctx.SaveChanges();
         }
 

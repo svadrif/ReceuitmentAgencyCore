@@ -26,9 +26,13 @@ namespace RecruitmentAgencyCore.Data.ViewModels
             Instagram = employer.Instagram;
             Address = employer.Address;
             CountryId = employer.CountryId;
+            CountryName = employer.Country?.NameEn;
             RegionId = employer.RegionId;
+            RegionName = employer.Region?.NameEn;
             DistrictId = employer.DistrictId;
+            DistrictName = employer.District?.NameEn;
             UserId = employer.UserId;
+            UserName = employer.User?.UserName;
         }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -43,9 +47,13 @@ namespace RecruitmentAgencyCore.Data.ViewModels
         public string Instagram { get; set; }
 
         public int? UserId { get; set; }
+        public string UserName { get; set; }
         public int? CountryId { get; set; }
+        public string CountryName { get; set; }
         public int? RegionId { get; set; }
+        public string RegionName { get; set; }
         public int? DistrictId { get; set; }
+        public string DistrictName { get; set; }
         public string Address { get; set; }
 
     }

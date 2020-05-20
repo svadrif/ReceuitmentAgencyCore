@@ -23,6 +23,7 @@ $(".file_remove").on("click", function (e) {
 	btnOuter.removeClass("file_uploaded");
 });
 
+
 /* selectlist */
 $(document).ready(function () {
     var Country = $('#CountryId');
@@ -43,7 +44,7 @@ $(document).ready(function () {
                 Region.append("<option value=\"\" selected disabled>Choose region</option>");
                 District.append("<option value=\"\" selected disabled>Choose district</option>");
                 $.each(data, function (index, dataValue) {
-                    Region.append("<option value=\"" + dataValue.id + "\">" + dataValue.nameEn + "</option>");
+                    Region.append("<option value=\"" + dataValue.id + "\">" + dataValue.name + "</option>");
                 })
             });
         }
@@ -59,7 +60,7 @@ $(document).ready(function () {
             $.getJSON("/GetList/GetDistrictByRegionId/?regionId=" + val, function (data) {
                 District.append("<option value=\"\" selected disabled>Choose district</option>");
                 $.each(data, function (index, dataValue) {
-                    District.append("<option value=\"" + dataValue.id + "\">" + dataValue.nameEn + "</option>");
+                    District.append("<option value=\"" + dataValue.id + "\">" + dataValue.name + "</option>");
                 })
             });
         }

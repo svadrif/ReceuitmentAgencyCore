@@ -47,7 +47,7 @@ namespace RecruitmentAgencyCore.Data.ViewModels
                 Instagram = model.Instagram,
                 IsReadyForMission = model.IsReadyForMission,
                 IsReadyForRelocation = model.IsReadyForRelocation,
-                DriverLicense = model.DriverLicense.toString(),
+                DriverLicense = ToString(model.DriverLicense),
                 UserId = model.UserId,
                 CitizenshipId = model.CitizenshipId,
                 SocialStatusId = model.SocialStatusId,
@@ -60,22 +60,22 @@ namespace RecruitmentAgencyCore.Data.ViewModels
             };
         }
 
-        public static string[] toArray(this string str)
+        public static string[] ToArray(this string str)
         {
             return str.Split(',');
         }
 
-        public static string toString(this string[] arr)
+        public static string ToString(this string[] arr)
         {
             return string.Join(',', arr);
         }
 
-        public static IList<string> toList(this string str)
+        public static IList<string> ToList(this string str)
         {
             return str.Split(',').ToList();
         }
 
-        public static string toString(this IList<string> list)
+        public static string ToString(this IList<string> list)
         {
             return string.Join(',', list);
         }

@@ -1,4 +1,8 @@
-﻿@model RegisterViewModel
+﻿@using Microsoft.Extensions.Localization
+
+@model RegisterViewModel
+
+@inject IStringLocalizer T
 
 @{
     ViewBag.Title = "Register";
@@ -8,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>RecruitmentAgencyCore - Register</title>
+    <title>RecruitmentAgencyCore - @T["Register"]</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -45,29 +49,29 @@
                     </span>
 
                     <span class="login100-form-title p-b-34 p-t-27">
-                        Register
+                        @T["Register"]
                     </span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter email">
-                        <input class="input100" type="email" asp-for="Email" placeholder="Email...">
+                    <div class="wrap-input100 validate-input" data-validate="@T["EnterEmail"]">
+                        <input class="input100" type="email" asp-for="Email" placeholder="@T["EnterEmail"]...">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         <span asp-validation-for="Email" class="text-warning"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter phonenumber">
-                        <input class="input100" type="tel" asp-for="PhoneNumber" placeholder="PhoneNumber...">
+                    <div class="wrap-input100 validate-input" data-validate="@T["EnterPhone"]">
+                        <input class="input100" type="tel" asp-for="PhoneNumber" placeholder="@T["EnterPhone"]...">
                         <span class="focus-input100" data-placeholder="&#xf158;"></span>
                         <span asp-validation-for="PhoneNumber" class="text-warning"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" asp-for="Password" placeholder="Password...">
+                    <div class="wrap-input100 validate-input" data-validate="@T["EnterPassword"]">
+                        <input class="input100" type="password" asp-for="Password" placeholder="@T["EnterPassword"]...">
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                         <span asp-validation-for="Password" class="text-warning"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Confirm password">
-                        <input class="input100" type="password" asp-for="PasswordConfirm" placeholder="Confirm your password">
+                    <div class="wrap-input100 validate-input" data-validate="@T["ConfirmPassword"]">
+                        <input class="input100" type="password" asp-for="PasswordConfirm" placeholder="@T["ConfirmPassword"]">
                         <span class="focus-input100" data-placeholder="&#xf190;"></span>
                         <span asp-validation-for="PasswordConfirm" class="text-warning"></span>
                     </div>
@@ -75,10 +79,10 @@
                     <div class="col-sm-12 mb-4">
                         <div class="toggle">
                             <input type="radio" asp-for="RoleId" value="2" id="Employer">
-                            <label for="Employer">Employer</label>
+                            <label for="Employer">@T["Employer"]</label>
 
                             <input type="radio" asp-for="RoleId" value="3" id="JobSeeker" checked>
-                            <label for="JobSeeker">JobSeeker</label>
+                            <label for="JobSeeker">@T["JobSeeker"]</label>
 
                             <div id="flap"><span class="content">productive</span></div>
                         </div>
@@ -86,17 +90,17 @@
 
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
-                            Register
+                            @T["Register"]
                         </button>
                     </div>
 
                     <div class="text-center p-t-90">
                         <a href="/Home/Index" class="txt1">
-                            Back
+                            @T["Back"]
                         </a>
                         <i class="fa fa-sad-cry"></i>
                         <a class="txt1 ml-3" href="/Account/Login">
-                            Already have an account? Login
+                            @T["Already"]
                         </a>
                     </div>
                 </form>
@@ -105,7 +109,7 @@
     </div>
 
 
-    <div id="dropDownSelect1"></div>
+
 
     <!--===============================================================================================-->
     <script src="~/LoginAssets/vendor/jquery/jquery-3.2.1.min.js"></script>

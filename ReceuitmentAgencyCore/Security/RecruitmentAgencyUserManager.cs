@@ -25,13 +25,13 @@ namespace RecruitmentAgencyCore.Security
         {
             _userStore = userStore;
         }
-        public override Task<User> FindByEmailAsync(string email)
+        public override async Task<User> FindByEmailAsync(string email)
         {
-            return _userStore.FindByEmailAsync(email);
+            return await _userStore.FindByEmailAsync(email);
         }
-        public override Task<IdentityResult> CreateAsync(User user)
+        public override async Task<IdentityResult> CreateAsync(User user)
         {
-            return _userStore.CreateAsync(user, new CancellationToken());
+            return await _userStore.CreateAsync(user, new CancellationToken());
         }
     }
 }

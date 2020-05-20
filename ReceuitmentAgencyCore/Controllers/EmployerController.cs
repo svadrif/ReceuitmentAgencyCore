@@ -11,6 +11,7 @@ using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
 using RecruitmentAgencyCore.Data.ViewModels;
 using RecruitmentAgencyCore.Helpers;
+using RecruitmentAgencyCore.Service.Models;
 
 namespace RecruitmentAgencyCore.Controllers
 {
@@ -47,6 +48,7 @@ namespace RecruitmentAgencyCore.Controllers
             return View();
         }
 
+        #region Register
         [AllowAnonymous]
         public async Task<IActionResult> Register(string email)
         {
@@ -59,9 +61,9 @@ namespace RecruitmentAgencyCore.Controllers
                     {
                         HttpContext?.Session?.SetInt32("RegisteredUserId", user.UserId);
                         HttpContext?.Session?.SetString("RegUserEmail", email);
-                        ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", "NameEn");
-                        ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", "NameEn");
-                        ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", "NameEn");
+                        ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
                         return View();
                     }
                     return RedirectToAction("Index", "Home");
@@ -93,7 +95,7 @@ namespace RecruitmentAgencyCore.Controllers
 
                         Employer employer = _employerRepo.Add(emp);
 
-                        MenuViewModel menu = await _routeHelper.GetMenuByEmail(email);
+                        MenuViewModel menu = await _routeHelper.GetMenuByEmailAsync(email);
 
                         if (menu.TypeId == 1)
                             return RedirectToAction(menu.Action, menu.Controller);
@@ -108,13 +110,14 @@ namespace RecruitmentAgencyCore.Controllers
                         return View();
                     }                  
                 }
-                ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", "NameEn");
-                ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", "NameEn");
-                ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", "NameEn");
+                ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
 
                 return View();
             }
             return RedirectToAction("Register", "Account");
         }
+        #endregion
     }
 }

@@ -1,6 +1,8 @@
 ﻿@using RecruitmentAgencyCore.Data.ViewModels;
-@model EmployerViewModel
+@using Microsoft.Extensions.Localization
 
+@inject IStringLocalizer T
+@model EmployerViewModel
 
 @{
     Layout = null;
@@ -10,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Register Employer</title>
+    <title>@T["Register"]</title>
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="~/AdminAssets/vendor/jquery/jquery.min.js"></script>
@@ -26,21 +28,21 @@
         <div class="form-v10-content">
             <form class="form-detail" method="post" id="myform" asp-action="Register" asp-controller="Employer" asp-antiforgery="true" , enctype="multipart/form-data">
                 <div class="form-left">
-                    <h2>General Information</h2>
+                    <h2>@T["GeneralInformation"]</h2>
                     <div class="form-row">
-                        <input type="text" asp-for="Name" class="company" placeholder="Company name*" required>
+                        <input type="text" asp-for="Name" class="company" placeholder="@T["CompanyName"]" required>
                     </div>
                     <div class="form-row">
-                        <input type="text" asp-for="Description" class="company" placeholder="Description">
+                        <input type="text" asp-for="Description" class="company" placeholder="@T["Description"]">
                     </div>
                     <div class="form-group">
-                        <div class="form-row form-row-1">Staffs count:</div>
+                        <div class="form-row form-row-1">@T["StaffCount"]:</div>
                         <div class="form-row form-row-2">
-                            <input type="number" asp-for="StaffCount" class="company" placeholder="Staff count">
+                            <input type="number" asp-for="StaffCount" class="company" placeholder="@T["StaffCount"]">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="form-row form-row-1 mb-1">Upload company logo:</div>
+                        <div class="form-row form-row-1 mb-1">@T["UploadCompanyLogo"]</div>
                         <div class="form-row form-row-2 mb-1">
                             <main class="main_full">
                                 <div class="container">
@@ -48,7 +50,7 @@
                                         <div class="button_outer">
                                             <div class="btn_upload">
                                                 <input type="file" id="upload_file" name="file">
-                                                Upload Image
+                                                @T["UploadImage"]
                                             </div>
                                             <div class="processing_bar"></div>
                                             <div class="success_box"></div>
@@ -67,10 +69,10 @@
                     </div>
                 </div>
                 <div class="form-right">
-                    <h2>Contact Details</h2>
+                    <h2>@T["ContactDetails"]</h2>
                     <div class="form-row">
                         <select asp-for="CountryId" asp-items="@ViewBag.Country">
-                            <option value="0" selected disabled>Select country</option>
+                            <option value="0" selected disabled>@T["SelectCountry"]</option>
                         </select>
                         <span class="select-btn">
                             <i class="zmdi zmdi-chevron-down"></i>
@@ -78,7 +80,7 @@
                     </div>
                     <div class="form-row">
                         <select asp-for="RegionId" asp-items="@ViewBag.Region">
-                            <option value="0" selected disabled>Select region</option>
+                            <option value="0" selected disabled>@T["SelectRegion"]</option>
                         </select>
                         <span class="select-btn">
                             <i class="zmdi zmdi-chevron-down"></i>
@@ -86,26 +88,26 @@
                     </div>
                     <div class="form-row">
                         <select asp-for="DistrictId" asp-items="@ViewBag.District">
-                            <option value="0" selected disabled>Select district</option>
+                            <option value="0" selected disabled>@T["SelectDistrict"]</option>
                         </select>
                         <span class="select-btn">
                             <i class="zmdi zmdi-chevron-down"></i>
                         </span>
                     </div>
                     <div class="form-row">
-                        <input type="text" asp-for="Address" placeholder="Address">
+                        <input type="text" asp-for="Address" placeholder="@T["Address"]">
                     </div>
                     <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" asp-for="Website" placeholder="Company website">
+                            <input type="text" asp-for="Website" placeholder="@T["CompanyWebsite"]">
                         </div>
                         <div class="form-row form-row-2">
-                            <input type="text" asp-for="Phone" placeholder="Phone Number (2)">
+                            <input type="text" asp-for="Phone" placeholder="@T["Phone"] (2)">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" asp-for="Mail" placeholder="Company email">
+                            <input type="text" asp-for="Mail" placeholder="Email">
                         </div>
                         <div class="form-row form-row-2">
                             <input type="text" asp-for="LinkedIn" placeholder="LinkedIn">
@@ -120,7 +122,7 @@
                         </div>
                     </div>
                     <div class="form-row-last">
-                        <input type="submit" name="register" class="register" value="Register company">
+                        <input type="submit" name="register" class="register" value="@T["Register"]">
                     </div>
                 </div>
             </form>

@@ -25,7 +25,7 @@ namespace RecruitmentAgencyCore.Data.ViewModels
             Instagram = jobSeeker.Instagram;
             IsReadyForMission = jobSeeker.IsReadyForMission.Value;
             IsReadyForRelocation = jobSeeker.IsReadyForRelocation.Value;
-            DriverLicense = jobSeeker.DriverLicense.toList();
+            DriverLicense = jobSeeker.DriverLicense.ToList();
             UserId = jobSeeker.UserId;
             CitizenshipId = jobSeeker.CitizenshipId;
             SocialStatusId = jobSeeker.SocialStatusId;

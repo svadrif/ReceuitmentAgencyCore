@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +18,6 @@ using RecruitmentAgencyCore.Helpers;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
-using RecruitmentAgencyCore.Models;
-using System.Threading;
 
 namespace RecruitmentAgencyCore
 {
@@ -118,7 +111,7 @@ namespace RecruitmentAgencyCore
           
             services.AddTransient<IMenuBuilder, MenuBuilder>();
             services.AddTransient<MenuModel>();
-
+            services.AddTransient<ChangeNameByLangModel>();
             services.AddTransient<UserModel>();
 
             services.AddTransient<RouteHelper>();
@@ -146,7 +139,6 @@ namespace RecruitmentAgencyCore
                 using IServiceScope scope = app.ApplicationServices.CreateScope();
                 Seeder seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
                 seeder.Seed();
-
             }
             else
             {

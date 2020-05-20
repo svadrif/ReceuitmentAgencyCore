@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
+using RecruitmentAgencyCore.Service.Models;
 
 namespace RecruitmentAgencyCore.Helpers
 {
@@ -15,8 +17,9 @@ namespace RecruitmentAgencyCore.Helpers
 
         public DBStringLocalizer(IGenericRepository<Resource> resourceRepo, IHttpContextAccessor httpContextAccessor)
         {
-            _resourceRepo = resourceRepo;
-            _httpContextAccessor = httpContextAccessor;
+            _resourceRepo = resourceRepo ?? throw new ArgumentNullException(nameof(resourceRepo));
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+            ChangeName();
         }
 
         public LocalizedString this[string name]
@@ -58,6 +61,25 @@ namespace RecruitmentAgencyCore.Helpers
                 .GetAllIncluding(r => r.Culture)
                 .Where(r => r.Culture.Name == (_httpContextAccessor.HttpContext.Session.GetString("culture") ?? "uz"))
                 .FirstOrDefault(r => r.Key == name)?.Value;
+        }
+
+        private void ChangeName()
+        {
+            if (_httpContextAccessor.HttpContext.Session.GetString("culture") == null)
+            {
+                ChangeNameByLangModel.Name = "NameUz";
+                ChangeNameByLangModel.Caption = "CaptionUz";
+            }
+            else if (_httpContextAccessor.HttpContext.Session.GetString("culture") == "ru")
+            {
+                ChangeNameByLangModel.Name = "NameRu";
+                ChangeNameByLangModel.Caption = "CaptionRu";
+            }
+            else
+            {
+                ChangeNameByLangModel.Name = "NameEn";
+                ChangeNameByLangModel.Caption = "CaptionEn";
+            }
         }
     }
 }

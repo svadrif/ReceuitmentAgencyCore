@@ -18,8 +18,8 @@ namespace RecruitmentAgencyCore.Controllers
 
         public BaseController(IGenericRepository<User> userRepo, IGenericRepository<Logging> loggingRepo)
         {
-            _userRepo = userRepo;
-            _loggingRepo = loggingRepo;
+            _userRepo = userRepo ?? throw new ArgumentNullException(nameof(userRepo));
+            _loggingRepo = loggingRepo ?? throw new ArgumentNullException(nameof(loggingRepo));
         }
 
         // For logging

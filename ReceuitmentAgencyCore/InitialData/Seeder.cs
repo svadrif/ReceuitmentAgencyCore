@@ -19,6 +19,7 @@ namespace RecruitmentAgencyCore.InitialData
         private readonly RecruitmentAgencyUserManager _userManager;
         private readonly RecruitmentAgencyUserStore _userStore;
 
+        #region Repositories
         private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<Role> _roleRepository;
         private readonly IGenericRepository<Permission> _permissionRepository;
@@ -41,9 +42,11 @@ namespace RecruitmentAgencyCore.InitialData
         private readonly IGenericRepository<District> _districtRepository;
         private readonly IGenericRepository<Menu> _menuRepository;
         private readonly IGenericRepository<MenuRolePermission> _menuRolePermissionRepository;
+        #endregion
 
         private readonly string _path;
 
+        #region Constructor
         public Seeder(AppDbContext ctx, RecruitmentAgencyUserStore userStore, IHostEnvironment hosting, RecruitmentAgencyUserManager userManager,
                      IGenericRepository<User> userRepository, IGenericRepository<Role> roleRepository, IGenericRepository<Permission> permissionRepository,
                      IGenericRepository<Gender> genderRepository, IGenericRepository<Country> countryRepository, IGenericRepository<Culture> cultureRepo,
@@ -83,7 +86,7 @@ namespace RecruitmentAgencyCore.InitialData
             _districtRepository = districtRepository;
             _menuRolePermissionRepository = menuRolePermissionRepository;
         }
-
+        #endregion
         public void Seed()
         {
             _ctx.Database.EnsureCreated();
@@ -366,9 +369,44 @@ namespace RecruitmentAgencyCore.InitialData
                             new Resource { Key = "SignUp", Value = "Sign up" },
                             new Resource { Key = "Login", Value =  "Login" },
                             new Resource { Key = "StartNow", Value = "Start building your own career now!" },
-                            new Resource { Key = "KetWord", Value = "Key words" },
+                            new Resource { Key = "KeyWord", Value = "Key words" },
                             new Resource { Key = "AllRegions", Value =  "All regions" },
-                            new Resource { Key = "WeOffer", Value = "We offer&nbsp;<a href='job-listing.html'>2,989 job vacancies</a> right now!" }
+                            new Resource { Key = "WeOffer", Value = "We offer&nbsp;<a href='job-listing.html'>2,989 job vacancies</a> right now!" },
+                            new Resource { Key = "Password", Value = "Password"},
+                            new Resource { Key = "RememberMe", Value = "Remember Me?"},
+                            new Resource { Key = "Welcome", Value = "Welcome to <span class='text-primary'>Jobs</span>Factory"},
+                            new Resource { Key = "Place", Value = "A place where leading employers are already looking for your talent and experience."},
+                            new Resource { Key = "MoreThan", Value = "More than 3.8 million visitors every day"},
+                            new Resource { Key = "Leading", Value = "Leading recruiting website in the US, Europe and Asia"},
+                            new Resource { Key = "24/7", Value = "24/7 Dedicated and free Support"},
+                            new Resource { Key = "Only", Value = "Only relevant and verified vacancies"},
+                            new Resource { Key = "RecentJobs", Value = "Recent Jobs"},
+                            new Resource { Key = "Pricing", Value = "Pricing"},
+                            new Resource { Key = "Startup", Value = "Startup</p><span class='badge'>7 Days Free</span>" },
+                            new Resource { Key = "Register", Value = "Register"},
+                            new Resource { Key = "EnterEmail", Value = "Enter email"},
+                            new Resource { Key = "EnterPhone", Value = "Enter phonenumber"},
+                            new Resource { Key = "EnterPassword", Value = "Enter password"},
+                            new Resource { Key = "ConfirmPassword", Value = "Confirm password"},
+                            new Resource { Key = "Employer", Value = "Employer"},
+                            new Resource { Key = "JobSeeker", Value = "JobSeeker"},
+                            new Resource { Key = "Back", Value = "Back"},
+                            new Resource { Key = "Already", Value = "Already have an account? Login"},
+                            new Resource { Key = "ForgotPassword", Value = " Forgot Password?"},
+                            new Resource { Key = "GeneralInformation", Value = "General Information"},
+                            new Resource { Key = "CompanyName", Value = "Company name*"},
+                            new Resource { Key = "Description", Value = "Description"},
+                            new Resource { Key = "StaffCount", Value = "Staffs count"},
+                            new Resource { Key = "UploadCompanyLogo", Value = "Upload company logo:"},
+                            new Resource { Key = "UploadImage", Value = "Upload image"},
+                            new Resource { Key = "SelectCountry", Value = "Select country"},
+                            new Resource { Key = "SelectRegion", Value = "Select region"},
+                            new Resource { Key = "SelectDistrict", Value = "Select district"},
+                            new Resource { Key = "ContactDetails", Value = "Contact Details"},
+                            new Resource { Key = "Address", Value = "Address"},
+                            new Resource { Key = "CompanyWebsite", Value = "Company website"},
+                            new Resource { Key = "Phone", Value = "Phone number"},
+                            
                         }
                     },
                     new Culture
@@ -383,9 +421,43 @@ namespace RecruitmentAgencyCore.InitialData
                             new Resource { Key = "SignUp", Value = "Регистрация" },
                             new Resource { Key = "Login", Value =  "Вход" },
                             new Resource { Key = "StartNow", Value = "Начните строить свою карьеру сейчас!" },
-                            new Resource { Key = "KetWord", Value = "Ключевые слова" },
+                            new Resource { Key = "KeyWord", Value = "Ключевые слова" },
                             new Resource { Key = "AllRegions", Value =  "Все регионы" },
-                            new Resource { Key = "WeOffer", Value = "Мы предлагаем вам&nbsp;<a href='job-listing.html'>2,989 вакансий</a> прямо сейчас!" }
+                            new Resource { Key = "WeOffer", Value = "Мы предлагаем вам&nbsp;<a href='job-listing.html'>2,989 вакансий</a> прямо сейчас!" },
+                            new Resource { Key = "Password", Value = "Пароль"},
+                            new Resource { Key = "RememberMe", Value = "Запомнить?"},
+                            new Resource { Key = "Welcome", Value = "Добро пожаловать в <span class='text-primary'>Jobs</span>Factory"},
+                            new Resource { Key = "Place", Value = "Именно здесь самые топовые компании ищут самых талантливых и опытных специалистов."},
+                            new Resource { Key = "MoreThan", Value = "Более чем 3.8 миллион посетитилей в день"},
+                            new Resource { Key = "Leading", Value = "Лидерующее рекрутинговое агентство в США, Европе и Азии"},
+                            new Resource { Key = "24/7", Value = "24/7 круглосуточная и бесплатная поддержка"},
+                            new Resource { Key = "Only", Value = "Только проверенные и надёжные вакансии"},
+                            new Resource { Key = "RecentJobs", Value = "Последние вакансии"},
+                            new Resource { Key = "Pricing", Value = "Тарифы"},
+                            new Resource { Key = "Startup", Value = "Стартап</p><span class='badge'>7 дней бесплатно</span>" },
+                            new Resource { Key = "Register", Value = "Регистрация"},
+                            new Resource { Key = "EnterEmail", Value = "Введите эмейл"},
+                            new Resource { Key = "EnterPhone", Value = "Введите номер телефона"},
+                            new Resource { Key = "EnterPassword", Value = "Введите пароль"},
+                            new Resource { Key = "ConfirmPassword", Value = "Подтвердите пароль"},
+                            new Resource { Key = "Employer", Value = "Работодатель"},
+                            new Resource { Key = "JobSeeker", Value = "Соискатель"},
+                            new Resource { Key = "Back", Value = "Назад"},
+                            new Resource { Key = "Already", Value = "Уже есть аккаунт? Вход"},
+                            new Resource { Key = "ForgotPassword", Value = "Забыли пароль?"},
+                            new Resource { Key = "GeneralInformation", Value = "Основные данные"},
+                            new Resource { Key = "CompanyName", Value = "Название компании*"},
+                            new Resource { Key = "Description", Value = "Описание"},
+                            new Resource { Key = "StaffCount", Value = "Количество сотрудников"},
+                            new Resource { Key = "UploadCompanyLogo", Value = "Загрузите логотип компании:"},
+                            new Resource { Key = "UploadImage", Value = "Загрузите картинку"},
+                            new Resource { Key = "SelectCountry", Value = "Выберите страну"},
+                            new Resource { Key = "SelectRegion", Value = "Выберите регион"},
+                            new Resource { Key = "SelectDistrict", Value = "Выберите район"},
+                            new Resource { Key = "ContactDetails", Value = "Контактные данные"},
+                            new Resource { Key = "Address", Value = "Адрес"},
+                            new Resource { Key = "CompanyWebsite", Value = "Вебсайт компании"},
+                            new Resource { Key = "Phone", Value = "Номер телефона"}
                         }
                     },
                     new Culture
@@ -400,9 +472,44 @@ namespace RecruitmentAgencyCore.InitialData
                             new Resource { Key = "SignUp", Value = "Registratsiya" },
                             new Resource { Key = "Login", Value =  "Kirish" },
                             new Resource { Key = "StartNow", Value = "Shaxsiy karyerangizni qurishni hoziroq boshlang!" },
-                            new Resource { Key = "KetWord", Value = "Kalit so'z" },
+                            new Resource { Key = "KeyWord", Value = "Kalit so'z" },
                             new Resource { Key = "AllRegions", Value =  "Barcha viloyatlar" },
-                            new Resource { Key = "WeOffer", Value = "Biz sizga&nbsp;<a href='job-listing.html'>2,989 ish o'rinlarini</a> taklif qilamiz!" }
+                            new Resource { Key = "WeOffer", Value = "Biz sizga&nbsp;<a href='job-listing.html'>2,989 ish o'rinlarini</a> taklif qilamiz!" },
+                            new Resource { Key = "Password", Value = "Parol"},
+                            new Resource { Key = "RememberMe", Value = "Eslab qolish?"},
+                            new Resource { Key = "Welcome", Value = "<span class='text-primary'>Jobs</span>Factoryga xush kelibsiz"},
+                            new Resource { Key = "Place", Value = "Aynan shu yerda dunyoning top kompaniyalari tajribali va qobiliyatli mutaxassislarni izlashadi."},
+                            new Resource { Key = "MoreThan", Value = "Kuniya 3.8 million ko'p tashrif buyuruvchilar"},
+                            new Resource { Key = "Leading", Value = "AQSh, Evropa va Osiyada birinchi kadrlar agentligi"},
+                            new Resource { Key = "24/7", Value = "24/7 kun-tun va tekin aloqa"},
+                            new Resource { Key = "Only", Value = "Faqat tekshirilgan va ishonchli ish o'rinlari"},
+                            new Resource { Key = "RecentJobs", Value = "So'nggi ish o'rinlari"},
+                            new Resource { Key = "Pricing", Value = "Tariflar"},
+                            new Resource { Key = "Startup", Value = "Startup</p><span class='badge'>7 kun bepul</span>" },
+                            new Resource { Key = "Register", Value = "Registratsiya"},
+                            new Resource { Key = "EnterEmail", Value = "E-pochtani kiriting"},
+                            new Resource { Key = "EnterPhone", Value = "Telefon raqamingizni kiriitng"},
+                            new Resource { Key = "EnterPassword", Value = "Parolni kiriting"},
+                            new Resource { Key = "ConfirmPassword", Value = "Parolni qayta kiriitng"},
+                            new Resource { Key = "Employer", Value = "Ish beruvchi"},
+                            new Resource { Key = "JobSeeker", Value = "Ish izlovchi"},
+                            new Resource { Key = "Back", Value = "Ortga"},
+                            new Resource { Key = "Already", Value = "Akkaunt mavjudmi? Kirish"},
+                            new Resource { Key = "ForgotPassword", Value = " Parolni unutdingizmi?"},
+                            new Resource { Key = "GeneralInformation", Value = "Umumiy ma'lumotlar"},
+                            new Resource { Key = "CompanyName", Value = "Kompaniya nomi*"},
+                            new Resource { Key = "Description", Value = "Qisqacha tavsiv"},
+                            new Resource { Key = "StaffCount", Value = "Xodimlar soni"},
+                            new Resource { Key = "UploadCompanyLogo", Value = "Kompaniya logotipini yuklang:"},
+                            new Resource { Key = "UploadImage", Value = "Rasmni yuklang"},
+                            new Resource { Key = "SelectCountry", Value = "Davlatni tanlang"},
+                            new Resource { Key = "SelectRegion", Value = "Viloyatni tanlang"},
+                            new Resource { Key = "SelectDistrict", Value = "Tumanni tanlang"},
+                            new Resource { Key = "ContactDetails", Value = "Kontakt ma'lumotlari"},
+                            new Resource { Key = "Address", Value = "Manzil"},
+                            new Resource { Key = "CompanyWebsite", Value = "Kompaniya vebsayti"},
+                            new Resource { Key = "Phone", Value = "Telefon raqami"}
+
                         }
                     }
                 };
@@ -410,6 +517,8 @@ namespace RecruitmentAgencyCore.InitialData
             }
             #endregion
         }
+
+        #region GetList helper
         private List<T> GetList<T>(string path) where T : class
         {
             string str = File.ReadAllText(path, Encoding.UTF8);
@@ -418,5 +527,6 @@ namespace RecruitmentAgencyCore.InitialData
             List<T> list = a.ToObject<List<T>>();
             return list;
         }
+        #endregion
     }
 }

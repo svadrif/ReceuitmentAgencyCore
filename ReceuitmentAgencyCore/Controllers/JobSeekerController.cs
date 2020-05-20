@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using RecruitmentAgencyCore.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RecruitmentAgencyCore.Data.ViewModels;
+using RecruitmentAgencyCore.Service.Models;
 
 namespace RecruitmentAgencyCore.Controllers
 {
@@ -71,13 +72,13 @@ namespace RecruitmentAgencyCore.Controllers
                         HttpContext?.Session?.SetString("RegUserEmail", email);
 
                         ViewBag.DriverLicenses = new SelectList(Utility.GetDriverLicenses(), "Text", "Value");
-                        ViewBag.FamilyStatus = new SelectList(_familyStatusRepo.GetAll().ToList(), "Id", "NameEn");
-                        ViewBag.SocialStatus = new SelectList(_socialStatusRepo.GetAll().ToList(), "Id", "NameEn");
-                        ViewBag.Citizenship = new SelectList(_citizenshipRepo.GetAll().ToList(), "Id", "NameEn");
-                        ViewBag.Gender = new SelectList(_genderRepo.GetAll().ToList(), "Id", "NameEn");
-                        ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", "NameEn");
-                        ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", "NameEn");
-                        ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", "NameEn");
+                        ViewBag.FamilyStatus = new SelectList(_familyStatusRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.SocialStatus = new SelectList(_socialStatusRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.Citizenship = new SelectList(_citizenshipRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.Gender = new SelectList(_genderRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                        ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
                         return View();
                     }
                 }
@@ -104,14 +105,14 @@ namespace RecruitmentAgencyCore.Controllers
 
 
                         JobSeeker t = model.AsJobSeeker();
-                        t.DriverLicense = model.DriverLicense.toString();
+                        t.DriverLicense = Extensions.ToString(model.DriverLicense);
 
                         t.CreatedBy = regId;
                         t.CreatedDate = DateTime.Now.Date;
 
                         JobSeeker jobSeeker = _jobSeekerRepo.Add(t);
 
-                        MenuViewModel menu = await _routeHelper.GetMenuByEmail(email);
+                        MenuViewModel menu = await _routeHelper.GetMenuByEmailAsync(email);
                         return RedirectToAction(menu.Action, menu.Controller);
                     }
                     catch (Exception e)
@@ -123,13 +124,13 @@ namespace RecruitmentAgencyCore.Controllers
                 }
 
                 ViewBag.DriverLicenses = new SelectList(Utility.GetDriverLicenses(), "Text", "Value");
-                ViewBag.FamilyStatus = new SelectList(_familyStatusRepo.GetAll().ToList(), "Id", "NameEn");
-                ViewBag.SocialStatus = new SelectList(_socialStatusRepo.GetAll().ToList(), "Id", "NameEn");
-                ViewBag.Citizenship = new SelectList(_citizenshipRepo.GetAll().ToList(), "Id", "NameEn");
-                ViewBag.Gender = new SelectList(_genderRepo.GetAll().ToList(), "Id", "NameEn");
-                ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", "NameEn");
-                ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", "NameEn");
-                ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", "NameEn");
+                ViewBag.FamilyStatus = new SelectList(_familyStatusRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.SocialStatus = new SelectList(_socialStatusRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.Citizenship = new SelectList(_citizenshipRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.Gender = new SelectList(_genderRepo.GetAll().ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.Country = new SelectList(_countryRepo.GetAll().Select(x => new CountryViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.Region = new SelectList(_regionRepo.GetAll().Select(x => new RegionViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
+                ViewBag.District = new SelectList(_districtRepo.GetAll().Select(x => new DistrictViewModel(x)).ToList(), "Id", ChangeNameByLangModel.Name ?? "NameUz");
 
                 return View();
             }

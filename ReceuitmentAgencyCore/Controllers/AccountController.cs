@@ -153,15 +153,13 @@ namespace RecruitmentAgencyCore.Controllers
             return View(model);
         }
 
-
-
         public async Task<RedirectToActionResult> DefineRoleAndRedirectToAction(string email)
         {
             try
             {
                 if (!string.IsNullOrEmpty(email))
                 {
-                    MenuViewModel menu = await _routeHelper.GetMenuByEmail(email);
+                    MenuViewModel menu = await _routeHelper.GetMenuByEmailAsync(email);
                     return RedirectToAction(menu?.Action, menu?.Controller);
                 }
             }

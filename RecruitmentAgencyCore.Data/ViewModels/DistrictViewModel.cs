@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RecruitmentAgencyCore.Data.ViewModels
 {
-    public class DistrictViewModel
+    public class DistrictViewModel : CountryViewModel
     {
         public DistrictViewModel()
         {
@@ -16,14 +16,11 @@ namespace RecruitmentAgencyCore.Data.ViewModels
             Id = district.Id;
             NameUz = district.NameUz;
             NameRu = district.NameRu;
-            NameEn = district.NameEn;
+            NameEn = district.NameEn;            
             RegionId = district.RegionId;
         }
 
-        public int Id { get; set; }
-        public string NameUz { get; set; }
-        public string NameRu { get; set; }
-        public string NameEn { get; set; }
         public int? RegionId { get; set; }
+
     }
 }

@@ -30,15 +30,17 @@ namespace RecruitmentAgencyCore.Helpers
             _jobSeekerRepository = jobSeekerRepository;
             _employerRepository = employerRepository;
         }
-        public async Task<MenuViewModel> GetMenuByEmail(string email)
+        public async Task<MenuViewModel> GetMenuByEmailAsync(string email)
         {
             try
             {
                 if (!string.IsNullOrEmpty(email))
                 {
                     User user = await _userRepository.FindAsync(x => x.Email == email);
-                    await GetCurrentUser(user);
-                    ICollection<MenuRolePermission> menuRolePermissions = _menuRolePermissionRepository.GetAllIncluding(r => r.Role, p => p.Permission, m => m.Menu).ToList().FindAll(x => x.RoleId == user.RoleId);
+                    GetCurrentUser(user);
+                    ICollection<MenuRolePermission> menuRolePermissions = _menuRolePermissionRepository
+                                .GetAllIncluding(r => r.Role, p => p.Permission, m => m.Menu)
+                                .ToList().FindAll(x => x.RoleId == user.RoleId);
                     MenuModel.GetMenuViewModels = _menuBuilder.GetMenu(menuRolePermissions);
                     MenuViewModel menu = MenuModel.GetMenuViewModels?.FirstOrDefault();
                     return menu;
@@ -52,11 +54,11 @@ namespace RecruitmentAgencyCore.Helpers
 
         }
 
-        public async Task GetCurrentUser(User user)
+        public void GetCurrentUser(User user)
         {
             if (user.RoleId == 3)
             {
-                JobSeeker jobseeker = await _jobSeekerRepository.FindAsync(x => x.UserId == user.UserId);
+                JobSeeker jobseeker = _jobSeekerRepository.GetAllIncluding(u => u.User, c => c.Country, r => r.Region, d => d.District).ToList().Find(x => x.UserId == user.UserId);
                 if (jobseeker != null)
                 {
                     UserModel.JobSeeker = new JobSeekerViewModel(jobseeker);
@@ -64,7 +66,7 @@ namespace RecruitmentAgencyCore.Helpers
             }
             else if (user.RoleId == 2)
             {
-                Employer employer = await _employerRepository.FindAsync(x => x.UserId == user.UserId);
+                Employer employer = _employerRepository.GetAllIncluding(u => u.User, c => c.Country, r => r.Region, d => d.District).ToList().Find(x => x.UserId == user.UserId);
                 if (employer != null)
                 {
                     UserModel.Employer = new EmployerViewModel(employer);

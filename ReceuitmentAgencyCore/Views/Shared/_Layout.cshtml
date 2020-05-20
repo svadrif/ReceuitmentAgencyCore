@@ -10,8 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
-
-
     <link rel="icon" href="~/HomeAssets/images/favicon.ico" type="image/x-icon">
 
     <link href="~/HomeAssets/css/bootstrap.css" rel="stylesheet" />
@@ -194,7 +192,7 @@
                                 <div class="rd-navbar-aside-item">
                                     <button class="button button-xs button-primary button-icon button-icon-left rd-navbar-popup-toggle toggle-original" data-rd-navbar-toggle="#rd-navbar-login"><span class="icon mdi mdi-import"></span>@T["Login"]</button>
                                     <div class="rd-navbar-popup bg-gray-100 toggle-original-elements" id="rd-navbar-login">
-                                        <h5 class="rd-navbar-popup-title">Login</h5>
+                                        <h5 class="rd-navbar-popup-title">@T["Login"]</h5>
                                         <form class="rd-form form-compact" method="post" asp-controller="Account" asp-action="Login">
                                             <div class="form-wrap">
                                                 <label for="Email">Email</label>
@@ -202,7 +200,7 @@
 
                                             </div>
                                             <div class="form-wrap">
-                                                <label for="Password">Password</label>
+                                                <label for="Password">@T["Password"]</label>
                                                 <input class="form-input form-control-has-validation" type="password" name="Password" id="Password"><span class="form-validation"></span>
 
                                             </div>
@@ -210,7 +208,7 @@
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-inline">
                                                     <input type="checkbox" name="RememberMe" id="RememberMe">
-                                                    <label for="RememberMe">Remember me?</label>
+                                                    <label for="RememberMe">@T["RememberMe"]</label>
 
                                                 </div>
                                             </div>
@@ -255,7 +253,7 @@
                                 <div class="form-wrap form-wrap-icon">
                                     <input class="form-input form-control-has-validation" id="form-keywords" type="text" name="keywords">
                                     <span class="form-validation"></span>
-                                    <label class="form-label rd-input-label" for="form-keywords">@T["KetWord"]</label>
+                                    <label class="form-label rd-input-label" for="form-keywords">@T["KeyWord"]</label>
                                     <span class="icon fl-bigmug-line-circular224"></span>
                                 </div>
                                 <div class="form-wrap form-wrap-icon form-wrap-select">

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RecruitmentAgencyCore.Data.Models;
 using RecruitmentAgencyCore.Data.Repository;
 using RecruitmentAgencyCore.Data.ViewModels;
+using RecruitmentAgencyCore.Service.Models;
 
 namespace RecruitmentAgencyCore.Controllers
 {
@@ -30,13 +30,26 @@ namespace RecruitmentAgencyCore.Controllers
         public JsonResult GetRegionByCountryId(int countryId)
         {
             List<RegionViewModel> res = _regionRepo.FindAll(x => x.CountryId == countryId).Select(x => new RegionViewModel(x)).ToList();
+            Change(res);
             return Json(res);
         }
 
         public JsonResult GetDistrictByRegionId(int regionId)
         {
             List<DistrictViewModel> res = _districtRepo.FindAll(x => x.RegionId == regionId).Select(x => new DistrictViewModel(x)).ToList();
+            Change(res);
             return Json(res);
+        }
+
+        private void Change<T>(List<T> res) where T : CountryViewModel
+        {
+            string name = ChangeNameByLangModel.Name ?? "NameUz";
+            switch (name)
+            {
+                case "NameUz": res.ForEach(x => x.Name = x.NameUz); break;
+                case "NameRu": res.ForEach(x => x.Name = x.NameRu); break;
+                default: res.ForEach(x => x.Name = x.NameEn); break;
+            }
         }
     }
 }
